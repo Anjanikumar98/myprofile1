@@ -6,16 +6,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fitness Manager',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFF1A1A1A),
       ),
-      home: WebPageCreationForm(),
+      home: Scaffold(
+        body: SafeArea(
+          child: WebPageFormScreen(),
+        ),
+      ),
     );
   }
 }

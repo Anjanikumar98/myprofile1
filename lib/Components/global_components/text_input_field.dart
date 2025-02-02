@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../Controllers/character_input_field/text_input_field_controller.dart';
 
 class TextInputField extends StatefulWidget {
@@ -56,7 +57,7 @@ class _TextInputFieldState extends State<TextInputField> {
                         : const Color(0xFF2F5B6C),
                     borderRadius: BorderRadius.circular(8),
                     border: focusedOrNot
-                        ? Border.all(color: Color(0xFFB8FE22), width: 1.5)
+                        ? Border.all(color: const Color(0xFFB8FE22), width: 1.5)
                         : Border.all(color: Colors.transparent, width: 0),
                   ),
                   child: Padding(
