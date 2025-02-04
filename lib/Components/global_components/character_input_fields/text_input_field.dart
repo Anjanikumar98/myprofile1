@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Controllers/character_input_field/text_input_field_controller.dart';
+import '../../../Controllers/character_input_field/text_input_field_controller.dart';
 
 class TextInputField extends StatefulWidget {
   const TextInputField(
