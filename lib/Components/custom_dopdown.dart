@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CustomDropdown extends StatelessWidget {
+class CustomDropdown extends StatefulWidget {
   final List<String> items;
   final String hint;
-  final String? selectedItem;
   final Function(String) onItemSelected;
   final double borderRadius;
   final double height;
   final double width;
 
-  CustomDropdown({
+  const CustomDropdown({
     Key? key,
     required this.items,
     required this.hint,
-    required this.selectedItem,
     required this.onItemSelected,
     this.borderRadius = 8.0,
     required this.height,
@@ -21,37 +20,44 @@ class CustomDropdown extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _CustomDropdownState createState() => _CustomDropdownState();
+}
+
+class _CustomDropdownState extends State<CustomDropdown> {
+  String? _selectedItem;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(widget.borderRadius),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           alignment: Alignment.bottomCenter,
           isExpanded: true,
-          value: selectedItem,
+          value: _selectedItem,
           hint: Text(
-            hint,
+            widget.hint,
             style: const TextStyle(
               color: Color(0xFFBDBDBD),
               fontSize: 16,
             ),
           ),
           dropdownColor: Color(0xFF55A6C4).withOpacity(0.5),
-          elevation: 01,
-          borderRadius: BorderRadius.circular(borderRadius),
-          items: items.map((category) {
+          elevation: 1,
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          items: widget.items.map((category) {
             return DropdownMenuItem<String>(
               value: category,
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Container(
-                  height: height,
-                  width: width,
+                  height: widget.height,
+                  width: widget.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(borderRadius),
+                    borderRadius: BorderRadius.circular(widget.borderRadius),
                     color: const Color(0xFF2F5B6C),
                   ),
                   child: Center(
@@ -69,7 +75,10 @@ class CustomDropdown extends StatelessWidget {
           }).toList(),
           onChanged: (value) {
             if (value != null) {
-              onItemSelected(value);
+              setState(() {
+                _selectedItem = value;
+              });
+              widget.onItemSelected(value);
             }
           },
           icon: const Icon(
