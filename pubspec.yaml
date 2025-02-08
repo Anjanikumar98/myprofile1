@@ -42,6 +42,7 @@ dependencies:
   geolocator: ^13.0.2
   percent_indicator: ^4.2.4
   dotted_border: ^2.1.0
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/icons/
     - assets/
 
   # To add assets to your application, add an assets section, like this:
@@ -86,21 +88,28 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-      - family: Poppins
-        fonts:
-          - asset: assets/fonts/Poppins-Regular.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
 
-      - family: Barlow_Semi_Condensed
-        fonts:
-          - asset: assets/fonts/BarlowSemiCondensed-BoldItalic.ttf
+    - family: Barlow_Semi_Condensed
+      fonts:
+        - asset: assets/fonts/BarlowSemiCondensed-BoldItalic.ttf
 
-      - family: Pontano Sans
-        fonts:
-          - asset: assets/fonts/PontanoSans-Regular.ttf
+    - family: Pontano Sans
+      fonts:
+        - asset: assets/fonts/PontanoSans-Regular.ttf
 
-      - family: Barlow Semi Condensed Bold 700
-        fonts:
-          - asset: assets/fonts/BarlowSemiCondensed-Bold.ttf
+    - family: Barlow Semi Condensed Bold 700
+      fonts:
+        - asset: assets/fonts/BarlowSemiCondensed-Bold.ttf
+
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist-Bold.ttf
+          weight: 700
+  
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

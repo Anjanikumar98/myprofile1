@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:myprofile1/web_page_creation_form.dart';
-
-import 'Components/local_components/business_name.dart';
-
-
+import 'package:get/get.dart';
+import 'routes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Color(0xFF1A1A1A),
+        scaffoldBackgroundColor: const Color(0xFF1A1A1A),
       ),
-      home: Scaffold(
-        body: SafeArea(
-          child: WebPageFormScreen()
-        ),
-      ),
+      initialRoute: '/webPageScreen', // Changed to match route definition
+      getPages: appRoutes,
     );
   }
 }
