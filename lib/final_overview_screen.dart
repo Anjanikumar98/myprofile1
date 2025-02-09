@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myprofile1/Screens/fotter_screen.dart';
+import 'Components/D1MM8_components/Trainers_componet/trainers_section.dart';
+import 'Components/D1MM8_components/Virtual_Tour_Section/virtual_tour_section.dart';
 import 'Components/D1MM8_components/business_details.dart';
+import 'Components/D1MM8_components/contactus.dart';
+import 'Components/D1MM8_components/reviews_container.dart';
 import 'Components/D1MM8_components/services.dart';
 import 'Components/global_components/buttons/primary_button.dart';
 import 'Components/global_components/buttons/secondary_button.dart';
 import 'Controllers/D1MM8_Controllers/final_screen_controller.dart';
+import 'Controllers/D1MM8_Controllers/navbar_controller.dart';
 
 class FinalScreen extends StatelessWidget {
   final FinalScreenController controller =
@@ -16,10 +21,16 @@ class FinalScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          _buildBackground(),
+          _buildBackground(), // Background Image
+
           Column(
             children: [
               _buildHeader(),
+              SizedBox(
+                height: 35,
+              ),
+              // ✅ Navbar added on top
+              CustomNavbar(),
               Expanded(
                 child: SingleChildScrollView(
                   child: _buildScrollableContent(),
@@ -35,22 +46,25 @@ class FinalScreen extends StatelessWidget {
   }
 
   Widget _buildBackground() {
-    return Opacity(
-      opacity: 0.5, // Adjust for better contrast
-      child: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image:
-                AssetImage("assets/images/background_image_final_screen1.png"),
-            fit: BoxFit.cover,
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/background_image_final_screen1.png"),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(
+            Colors.black.withOpacity(0.3), // ✅ Adjust image visibility
+            BlendMode.darken, // ✅ Blend image with gradient
           ),
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF063434), Color(0xFF063434)],
-          ),
-          border: Border.all(color: Color(0xFF4E4E4E), width: 8),
-          borderRadius: BorderRadius.circular(20),
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF063434).withOpacity(0.9), // ✅ Added opacity
+            Color(0xFF063434).withOpacity(0.8),
+          ],
         ),
       ),
     );
@@ -76,11 +90,11 @@ class FinalScreen extends StatelessWidget {
       children: [
         BusinessDetails(),
         Services(),
-        // VirtualTour(),
+        VirtualTourSection(),
         // Memberships(),
-        // Trainers(),
-        // Reviews(),
-        // ContactUs(),
+        TrainersSection(),
+        ReviewsContainer(),
+        ContactUsSection(),
         FlexFitFooter(),
       ],
     );
@@ -125,7 +139,7 @@ class FinalScreen extends StatelessWidget {
               isPrimary: false,
               hasIcon: false,
               OnTap: () {
-                Get.back();
+                // Get.back();
               },
             ),
           ),
