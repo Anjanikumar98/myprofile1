@@ -158,6 +158,9 @@ class FlexFitFooter extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: InkWell(
+        onTap: (){
+
+        },
         child: Text(
           text,
           style: TextStyle(
