@@ -16,9 +16,8 @@ class BusinessConnections extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
+    return Center(
+      child: Center(
         child: Container(
           width: screenWidth * 0.9,
           padding: EdgeInsets.symmetric(

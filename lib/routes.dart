@@ -6,6 +6,7 @@ import 'Components/D1MM8_components/Virtual_Tour_Section/virtual_tour_section.da
 import 'Components/D1MM8_components/contactus.dart';
 import 'Components/local_components/business_name.dart';
 import 'Screens/D1CM6/business_connection_screen.dart';
+import 'Screens/D1CM6/trainers_screen.dart';
 import 'final_overview_screen.dart';
 
 final List<GetPage> appRoutes = [
@@ -15,4 +16,5 @@ final List<GetPage> appRoutes = [
   // GetPage(name: '/TrainersSection', page: () => TrainersSection()),
   // GetPage(name: '/VirtualTourSection', page: () => VirtualTourSection()),
   GetPage(name: '/BusinessConnectionScreen', page: () => BusinessConnectionScreen()),
+  GetPage(name: '/TrainersScreen', page: () => TrainersScreen()),
 ];
