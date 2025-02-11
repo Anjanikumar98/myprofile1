@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myprofile1/Screens/fotter_screen.dart';
+import 'Components/D1MM8_components/Membership_section/membership_view.dart';
 import 'Components/D1MM8_components/Trainers_componet/trainers_section.dart';
 import 'Components/D1MM8_components/Virtual_Tour_Section/virtual_tour_section.dart';
 import 'Components/D1MM8_components/business_details.dart';
@@ -91,7 +92,7 @@ class FinalScreen extends StatelessWidget {
         BusinessDetails(),
         Services(),
         VirtualTourSection(),
-        // Memberships(),
+        MembershipPlansView(),
         TrainersSection(),
         ReviewsContainer(),
         ContactUsSection(),
