@@ -8,7 +8,13 @@ class PrimaryButton extends StatefulWidget {
     required this.buttonText,
     required this.onTap,
     required this.isEnabled,
-    this.icon, this.borderColor, this.borderWidth, // ✅ Made optional
+
+    this.icon,
+    this.borderColor,
+    this.borderWidth,
+    this.borderRadius,
+    this.padding,
+    this.backgroundColor,
   });
 
   final double buttonHeight;
@@ -16,9 +22,14 @@ class PrimaryButton extends StatefulWidget {
   final String buttonText;
   final VoidCallback onTap;
   final bool isEnabled;
-  final Widget? icon; // ✅ Optional icon parameter
-  final dynamic borderColor;
-  final dynamic borderWidth;
+
+  final Widget? icon;
+  final Color? borderColor;
+  final double? borderWidth;
+  final double? borderRadius;
+  final EdgeInsetsGeometry? padding;
+  final Color? backgroundColor;
+
 
   @override
   State<PrimaryButton> createState() => _PrimaryButtonState();
@@ -32,14 +43,16 @@ class _PrimaryButtonState extends State<PrimaryButton> {
       child: Container(
         width: widget.buttonWidth,
         height: widget.buttonHeight,
+        padding: widget.padding ?? EdgeInsets.zero,
         decoration: BoxDecoration(
-          color: widget.isEnabled
-              ? const Color(0xFFB8FE22)
-              : const Color(0xFFB8FE22).withOpacity(0.5),
-          borderRadius: BorderRadius.circular(8),
+          color: widget.backgroundColor ??
+              (widget.isEnabled
+                  ? const Color(0xFFB8FE22)
+                  : const Color(0xFFB8FE22).withOpacity(0.5)),
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
           border: Border.all(
-            color: const Color(0xFFB8FE22),
-            width: widget.isEnabled ? 0 : 1,
+            color: widget.borderColor ?? const Color(0xFFB8FE22),
+            width: widget.borderWidth ?? (widget.isEnabled ? 0 : 1),
           ),
         ),
         child: Row(
@@ -55,7 +68,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
               ),
             ),
             if (widget.icon != null) ...[
-              const SizedBox(width: 8), // Adds spacing between text and icon
+              const SizedBox(width: 8),
               widget.icon!,
             ],
           ],
