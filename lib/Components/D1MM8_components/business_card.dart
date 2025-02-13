@@ -124,10 +124,12 @@ class BusinessCard extends StatelessWidget {
                     buttonText: 'Get Started',
                     onTap: () {},
                     isEnabled: true,
+                    textColor: Colors.white,
                     borderColor: const Color(0xFFB8FE22),
-                    icon: const Icon(Icons.arrow_forward,
-                        size: 18, color: Colors.white), // Adjusted color
-                  ),
+                    hasIcon: true,
+                    icon: const Icon(Icons.arrow_forward, size: 18, color: Colors.white),
+                  )
+
                 ],
               ),
             ),

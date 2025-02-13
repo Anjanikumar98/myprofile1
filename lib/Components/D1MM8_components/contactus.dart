@@ -187,7 +187,7 @@ class ContactUsSection extends StatelessWidget {
                                 children: [
                                   Label(
                                       fieldLabel: 'Name',
-                                      optionalTextAvailable: false),
+                                      optionalTextAvailable: ''),
                                   SizedBox(height: 15),
                                   TextInputField(
                                     enabled: true,
@@ -199,7 +199,7 @@ class ContactUsSection extends StatelessWidget {
                                   SizedBox(height: 15),
                                   Label(
                                       fieldLabel: 'Email',
-                                      optionalTextAvailable: false),
+                                      optionalTextAvailable: ''),
                                   SizedBox(height: 15),
                                   TextInputField(
                                     enabled: true,
@@ -211,8 +211,8 @@ class ContactUsSection extends StatelessWidget {
                                   SizedBox(height: 15),
                                   Label(
                                       fieldLabel: 'Description',
-                                      optionalTextAvailable: true,
-                                      optionalText: 'optional'),
+                                      optionalTextAvailable: 'optional',
+                                      ),
                                   SizedBox(height: 15),
                                   DescriptionInputField(
                                     enabled: true,

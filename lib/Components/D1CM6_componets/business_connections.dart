@@ -1,8 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../D1MM8_components/business_card.dart';
 import '../D1MM8_components/widgets/custom_divider.dart';
 import '../global_components/buttons/primary_button.dart';
 import '../global_components/buttons/secondary_button.dart';

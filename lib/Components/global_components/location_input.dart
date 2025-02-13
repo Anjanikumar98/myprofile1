@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../Controllers/global_controllers/location_input_controller.dart';
+import '../../Controllers/global_controllers/location_input_controller.dart';
+
+
+
 
 class LocationInputField extends StatelessWidget {
   final LocationInputController controller = Get.put(LocationInputController());

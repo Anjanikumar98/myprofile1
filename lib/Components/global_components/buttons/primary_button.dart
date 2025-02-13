@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class PrimaryButton extends StatefulWidget {
   const PrimaryButton({
@@ -8,13 +9,14 @@ class PrimaryButton extends StatefulWidget {
     required this.buttonText,
     required this.onTap,
     required this.isEnabled,
-
-    this.icon,
+    this.backgroundColor,
+    this.textColor,
     this.borderColor,
-    this.borderWidth,
     this.borderRadius,
     this.padding,
-    this.backgroundColor,
+    this.hasIcon = false,
+    this.iconPath,
+    this.icon,
   });
 
   final double buttonHeight;
@@ -22,14 +24,14 @@ class PrimaryButton extends StatefulWidget {
   final String buttonText;
   final VoidCallback onTap;
   final bool isEnabled;
-
-  final Widget? icon;
+  final Color? backgroundColor;
+  final Color? textColor;
   final Color? borderColor;
-  final double? borderWidth;
   final double? borderRadius;
   final EdgeInsetsGeometry? padding;
-  final Color? backgroundColor;
-
+  final String? iconPath;
+  final Icon? icon;
+  final bool hasIcon;
 
   @override
   State<PrimaryButton> createState() => _PrimaryButtonState();
@@ -39,39 +41,48 @@ class _PrimaryButtonState extends State<PrimaryButton> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.onTap,
+      onTap: widget.isEnabled ? widget.onTap : null,
       child: Container(
         width: widget.buttonWidth,
         height: widget.buttonHeight,
-        padding: widget.padding ?? EdgeInsets.zero,
+        padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          color: widget.backgroundColor ??
-              (widget.isEnabled
-                  ? const Color(0xFFB8FE22)
-                  : const Color(0xFFB8FE22).withOpacity(0.5)),
+          color: widget.isEnabled
+              ? (widget.backgroundColor ?? Colors.blue)
+              : (widget.backgroundColor ?? Colors.blue).withOpacity(0.5),
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
           border: Border.all(
-            color: widget.borderColor ?? const Color(0xFFB8FE22),
-            width: widget.borderWidth ?? (widget.isEnabled ? 0 : 1),
+            color: widget.borderColor ?? Colors.transparent,
+            width: widget.isEnabled ? 1 : 0,
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              widget.buttonText,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (widget.hasIcon) ...[
+                widget.icon ??
+                    SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: SvgPicture.asset(
+                        widget.iconPath ?? 'assets/images/message_icon.svg',
+                      ),
+                    ),
+                const SizedBox(width: 5),
+              ],
+              Text(
+                widget.buttonText,
+                style: TextStyle(
+                  color: widget.textColor ?? Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Poppins',
+                ),
               ),
-            ),
-            if (widget.icon != null) ...[
-              const SizedBox(width: 8),
-              widget.icon!,
             ],
-          ],
+          ),
         ),
       ),
     );

@@ -1,13 +1,12 @@
 import 'package:get/get.dart';
+import 'package:get/get.dart';
 
 class DescriptionInputFieldController extends GetxController {
-
   final RxString _currentFocusedFieldId = ''.obs;
 
   void requestFocus(String uniqueDescriptionInputFieldId) {
     if (_currentFocusedFieldId.value != uniqueDescriptionInputFieldId) {
       _currentFocusedFieldId.value = uniqueDescriptionInputFieldId;
-      //print(_currentFocusedFieldId.value);
     }
   }
 
@@ -15,44 +14,25 @@ class DescriptionInputFieldController extends GetxController {
     _currentFocusedFieldId.value = '';
   }
 
-
-  bool isFieldFocused(String uniqueDescriptionInputFieldId){
-
-    if(_currentFocusedFieldId.value == uniqueDescriptionInputFieldId){
-      return true;
-    }
-    else{
-      return false;
-    }
-
-  }
-
-
+  bool isFieldFocused(String uniqueDescriptionInputFieldId) =>
+      _currentFocusedFieldId.value == uniqueDescriptionInputFieldId;
 }
 
+// Form Controller for Validation
+class FormController extends GetxController {
+  var titleController = ''.obs;
+  var taglineController = ''.obs;
+  var descriptionController = ''.obs;
+  var selectedBusinessType = ''.obs;
+  var isFormValid = false.obs;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  void validateForm() {
+    isFormValid.value = titleController.value.trim().isNotEmpty &&
+        selectedBusinessType.value.isNotEmpty &&
+        taglineController.value.trim().isNotEmpty &&
+        descriptionController.value.trim().isNotEmpty;
+  }
+}
 
 
 

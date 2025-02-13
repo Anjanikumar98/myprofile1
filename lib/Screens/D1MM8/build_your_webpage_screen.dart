@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../Components/D1CM6_componets/business_connections.dart';
-
-class BusinessConnectionScreen extends StatefulWidget {
-  const BusinessConnectionScreen({super.key});
+class BuildYourWebpageScreen extends StatefulWidget {
+  const BuildYourWebpageScreen({super.key});
 
   @override
-  State<BusinessConnectionScreen> createState() =>
-      _BusinessConnectionScreenState();
+  State<BuildYourWebpageScreen> createState() => _BuildYourWebpageScreenState();
 }
 
-class _BusinessConnectionScreenState extends State<BusinessConnectionScreen> {
+class _BuildYourWebpageScreenState extends State<BuildYourWebpageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +130,8 @@ class _BusinessConnectionScreenState extends State<BusinessConnectionScreen> {
                       width: double.infinity,
                       child: Column(
                         children: [
-                          BusinessConnections(),
+
+
                         ],
                       ),
                     ),

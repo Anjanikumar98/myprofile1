@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CustomDropdown extends StatefulWidget {
   final List<String> items;
@@ -8,6 +7,8 @@ class CustomDropdown extends StatefulWidget {
   final double borderRadius;
   final double height;
   final double width;
+  final EdgeInsets padding; // ✅ Add padding parameter
+  final Color backgroundColor; // ✅ Add background color parameter
 
   const CustomDropdown({
     Key? key,
@@ -17,6 +18,8 @@ class CustomDropdown extends StatefulWidget {
     this.borderRadius = 8.0,
     required this.height,
     required this.width,
+    required this.padding, // ✅ Initialize padding
+    required this.backgroundColor, // ✅ Initialize background color
   }) : super(key: key);
 
   @override
@@ -29,13 +32,13 @@ class _CustomDropdownState extends State<CustomDropdown> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: widget.padding, // ✅ Use dynamic padding
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(widget.borderRadius),
+        color: widget.backgroundColor, // ✅ Use dynamic background color
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
-          alignment: Alignment.bottomCenter,
           isExpanded: true,
           value: _selectedItem,
           hint: Text(
@@ -45,29 +48,17 @@ class _CustomDropdownState extends State<CustomDropdown> {
               fontSize: 16,
             ),
           ),
-          dropdownColor: Color(0xFF55A6C4).withOpacity(0.5),
-          elevation: 1,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+          dropdownColor: widget.backgroundColor.withOpacity(0.5),
           items: widget.items.map((category) {
             return DropdownMenuItem<String>(
               value: category,
               child: Padding(
                 padding: const EdgeInsets.all(4.0),
-                child: Container(
-                  height: widget.height,
-                  width: widget.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(widget.borderRadius),
-                    color: const Color(0xFF2F5B6C),
-                  ),
-                  child: Center(
-                    child: Text(
-                      category,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                      ),
-                    ),
+                child: Text(
+                  category,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
                   ),
                 ),
               ),
