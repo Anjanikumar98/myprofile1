@@ -12,14 +12,14 @@ class MembershipController extends GetxController {
   }
 
   void loadPlans() {
-    plans.value = [
+    plans.assignAll([
       MembershipPlan(
         name: "Session-Based Plan",
         price: 4000,
         rating: 4.0,
         sessions: 30,
         validityDays: 90,
-        pricePerSession: 100,
+        pricePerSession: 4000 / 30, // ✅ Corrected calculation
         features: [
           "Feature 1",
           "Feature 2",
@@ -37,7 +37,7 @@ class MembershipController extends GetxController {
         rating: 4.0,
         sessions: 30,
         validityDays: 90,
-        pricePerSession: 100,
+        pricePerSession: 4000 / 30, // ✅ Corrected calculation
         features: [
           "Feature 1",
           "Feature 2",
@@ -55,7 +55,7 @@ class MembershipController extends GetxController {
         rating: 4.0,
         sessions: 30,
         validityDays: 90,
-        pricePerSession: 100,
+        pricePerSession: 4000 / 30, // ✅ Corrected calculation
         features: [
           "Feature 1",
           "Feature 2",
@@ -73,7 +73,7 @@ class MembershipController extends GetxController {
         rating: 4.0,
         sessions: 30,
         validityDays: 90,
-        pricePerSession: 100,
+        pricePerSession: 4000 / 30, // ✅ Corrected calculation
         features: [
           "Feature 1",
           "Feature 2",
@@ -85,7 +85,7 @@ class MembershipController extends GetxController {
         showOuterLayer: true,
         outerLayerText: "Recommended",
       ),
-    ];
+    ]);
   }
 
   void changePeriod(String period) {

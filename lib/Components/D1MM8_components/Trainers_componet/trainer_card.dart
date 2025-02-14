@@ -9,54 +9,67 @@ class TrainerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWidth = MediaQuery.of(context).size.width;
+
     return Container(
-      width: 200,
-      height: 258.62,
-      padding: const EdgeInsets.all(4.14),
+      width: (200 / 360) * deviceWidth, // ✅ Responsive width
+      height: (258.62 / 800) * deviceHeight, // ✅ Responsive height
+      padding:
+          EdgeInsets.all((4.14 / 360) * deviceWidth), // ✅ Responsive padding
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.34),
+        borderRadius: BorderRadius.circular(
+            (10.34 / 360) * deviceWidth), // ✅ Responsive border radius
         color: Colors.black.withOpacity(0.6), // Dark background
       ),
       child: Stack(
         children: [
           /// **Trainer Image**
           ClipRRect(
-            borderRadius: BorderRadius.circular(10.34),
+            borderRadius: BorderRadius.circular((10.34 / 360) * deviceWidth),
             child: Image.network(
               trainer.imageUrl,
-              width: 200,
-              height: 258.62,
+              width: (200 / 360) * deviceWidth, // ✅ Responsive width
+              height: (258.62 / 800) * deviceHeight, // ✅ Responsive height
               fit: BoxFit.cover,
             ),
           ),
 
           /// **Blur Background + Details Section**
           Positioned(
-            bottom: 8,
-            left: 4,
-            right: 4,
+            bottom: (8 / 800) * deviceHeight, // ✅ Responsive position
+            left: (4 / 360) * deviceWidth,
+            right: (4 / 360) * deviceWidth,
             child: Stack(
               children: [
                 /// **Blur Effect**
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8.28),
+                  borderRadius:
+                      BorderRadius.circular((8.28 / 360) * deviceWidth),
                   child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 12.93, sigmaY: 12.93),
+                    filter: ImageFilter.blur(
+                      sigmaX: (12.93 / 360) *
+                          deviceWidth, // ✅ Responsive blur effect
+                      sigmaY: (12.93 / 360) * deviceWidth,
+                    ),
                     child: Container(
-                      width: 191.72,
-                      height: 99.41,
-                      color: Colors.white.withOpacity(0.1), // Adjust opacity
+                      width: (191.72 / 360) * deviceWidth, // ✅ Responsive width
+                      height:
+                          (99.41 / 800) * deviceHeight, // ✅ Responsive height
+                      color: Colors.white.withOpacity(0.3), // Adjust opacity
                     ),
                   ),
                 ),
 
                 /// **Trainer Info**
                 Container(
-                  width: 191.72,
-                  height: 99.41,
-                  padding: const EdgeInsets.all(4.14),
+                  width: (191.72 / 360) * deviceWidth, // ✅ Responsive width
+                  height: (99.41 / 800) * deviceHeight, // ✅ Responsive height
+                  padding: EdgeInsets.all(
+                      (4.14 / 360) * deviceWidth), // ✅ Responsive padding
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.28),
+                    borderRadius:
+                        BorderRadius.circular((8.28 / 360) * deviceWidth),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,53 +77,63 @@ class TrainerCard extends StatelessWidget {
                       /// **Trainer Name**
                       Text(
                         trainer.name,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: "Barlow Semi Condensed",
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w800, // Make it bolder
                           fontStyle: FontStyle.italic,
-                          fontSize: 20,
-                          height: 1.2, // Line height
+                          fontSize: (18 / 360) * deviceWidth, // Slightly larger
+                          height: 1.2,
                           color: Colors.white,
-                          decoration: TextDecoration.none
+                          decoration: TextDecoration.none,
                         ),
                       ),
 
-                      const SizedBox(height: 2), // ⬅ Add spacing before the position text
+                      SizedBox(
+                          height:
+                              (2 / 800) * deviceHeight), // ✅ Responsive spacing
 
                       /// **Trainer Position**
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: (8 / 360) * deviceWidth, // More padding
+                          vertical: (4 / 800) * deviceHeight,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFFB8FE22), // Primary Green
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius:
+                              BorderRadius.circular((4 / 360) * deviceWidth),
                         ),
                         child: Text(
                           trainer.position,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w500,
-                            fontSize: 10,
+                            fontSize: (10 / 360) *
+                                deviceWidth, // ✅ Responsive font size
                             color: Colors.black,
-                            decoration: TextDecoration.none
+                            decoration: TextDecoration.none,
                           ),
                         ),
                       ),
 
-                      const SizedBox(height: 6), // ⬅ Increase spacing to separate position from description
+                      SizedBox(
+                          height:
+                              (6 / 800) * deviceHeight), // ✅ Responsive spacing
 
                       /// **Trainer Description**
                       Text(
                         trainer.description,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w500,
-                          fontSize: 8,
-                          height: 1.5, // Line height for better readability
+                          fontSize: (8 / 360) * deviceWidth,
+                          height: 1.5,
                           color: Colors.white,
-                          decoration: TextDecoration.none
+                          decoration: TextDecoration.none,
                         ),
-                        maxLines: 3,
+                        maxLines: 4, // Increased for better readability
                         overflow: TextOverflow.ellipsis,
+                        softWrap: true, // Allows wrapping
                       ),
                     ],
                   ),

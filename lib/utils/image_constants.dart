@@ -23,3 +23,7 @@ class ImageConstants {
   static const String hamburgerThreeDots =
       'assets/images/hamburger_three_dots.png';
 }
+
+class AppAssets {
+  static const backgroundImage = "assets/images/background_image_final_screen1.png";
+}

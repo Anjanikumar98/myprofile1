@@ -6,164 +6,143 @@ class FlexFitFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWidth = MediaQuery.of(context).size.width;
+
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+      padding: EdgeInsets.symmetric(
+        vertical: (20 / 800) * deviceHeight,
+        horizontal: (16 / 360) * deviceWidth,
+      ),
       color: Colors.black,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Logo and Name
+          /// **Logo and Name**
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/Property 1=Ballerina.png'),
-              // Icon(
-              //   Icons.fitness_center,
-              //   color: Colors.limeAccent,
-              //   size: 28,
-              // ),
-              const SizedBox(width: 8),
+              Image.asset(
+                'assets/images/Property 1=Ballerina.png',
+                width: (50 / 360) * deviceWidth, // ✅ Responsive logo size
+                height: (50 / 800) * deviceHeight,
+                errorBuilder: (context, error, stackTrace) => const Icon(
+                  Icons.fitness_center,
+                  color: Colors.limeAccent,
+                  size: 28,
+                ),
+              ),
+              SizedBox(width: (8 / 360) * deviceWidth),
               Text(
                 'FlexFit',
                 style: TextStyle(
                   color: Colors.limeAccent,
-                  fontSize: 22,
+                  fontSize: (22 / 360) * deviceWidth,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: (16 / 800) * deviceHeight),
 
-          // Navigation Links
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          /// **Navigation Links**
+          Wrap(
+            spacing: (12 / 360) * deviceWidth, // ✅ Even spacing
             children: [
-              InkWell(
-                child: _navLink('Services'),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _navLink('Membership'),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _navLink('Trainers'),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _navLink('Contact Us'),
-                onTap: () {},
-              ),
-            ],
+              _navLink('Services', deviceWidth),
+              _navLink('Membership', deviceWidth),
+              _navLink('Trainers', deviceWidth),
+              _navLink('Contact Us', deviceWidth),
+            ].map((widget) => InkWell(onTap: () {}, child: widget)).toList(),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: (16 / 800) * deviceHeight),
 
-          // Social Media Icons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          /// **Social Media Icons**
+          Wrap(
+            spacing: (12 / 360) * deviceWidth,
             children: [
-              InkWell(
-                child: _socialIcon(FontAwesomeIcons.facebookF),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _socialIcon(FontAwesomeIcons.instagram),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _socialIcon(FontAwesomeIcons.xTwitter),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _socialIcon(FontAwesomeIcons.linkedinIn),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _socialIcon(FontAwesomeIcons.youtube),
-                onTap: () {},
-              ),
-            ],
+              FontAwesomeIcons.facebookF,
+              FontAwesomeIcons.instagram,
+              FontAwesomeIcons.xTwitter,
+              FontAwesomeIcons.linkedinIn,
+              FontAwesomeIcons.youtube,
+            ]
+                .map((icon) => InkWell(
+                      onTap: () {}, // Add action here if needed
+                      child: _socialIcon(icon, deviceWidth),
+                    ))
+                .toList(),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: (16 / 800) * deviceHeight),
 
-          // Divider Line
+          /// **Divider Line**
           Container(
             height: 1,
             width: double.infinity,
             color: Colors.white24,
-            margin: const EdgeInsets.symmetric(vertical: 16),
+            margin: EdgeInsets.symmetric(vertical: (16 / 800) * deviceHeight),
           ),
 
-          // Powered by Membes
+          /// **Powered by Membes**
           Text(
             'Powered by Membes',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 14,
+              fontSize: (14 / 360) * deviceWidth,
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: (16 / 800) * deviceHeight),
 
-          // Footer Links
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          /// **Footer Links**
+          Wrap(
+            spacing: (12 / 360) * deviceWidth,
             children: [
-              InkWell(
-                child: _footerLink('Privacy Policy'),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _footerLink('Terms of Service'),
-                onTap: () {},
-              ),
-              InkWell(
-                child: _footerLink('Cookies Settings'),
-                onTap: () {},
-              ),
-            ],
+              _footerLink('Privacy Policy', deviceWidth),
+              _footerLink('Terms of Service', deviceWidth),
+              _footerLink('Cookies Settings', deviceWidth),
+            ].map((widget) => InkWell(onTap: () {}, child: widget)).toList(),
           ),
         ],
       ),
     );
   }
 
-  Widget _navLink(String text) {
+  Widget _navLink(String text, double deviceWidth) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: EdgeInsets.symmetric(horizontal: (12 / 360) * deviceWidth),
       child: Text(
         text,
         style: TextStyle(
           color: Colors.white,
-          fontSize: 14,
+          fontSize: (14 / 360) * deviceWidth, // ✅ Responsive font size
         ),
       ),
     );
   }
 
-  Widget _socialIcon(IconData icon) {
+  Widget _socialIcon(IconData icon, double deviceWidth) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: (10 / 360) * deviceWidth),
       child: Icon(
         icon,
         color: Colors.limeAccent,
-        size: 22,
+        size: (22 / 360) * deviceWidth, // ✅ Responsive icon size
       ),
     );
   }
 
-  Widget _footerLink(String text) {
+  Widget _footerLink(String text, double deviceWidth) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: EdgeInsets.symmetric(horizontal: (12 / 360) * deviceWidth),
       child: InkWell(
-        onTap: () {},
+        onTap: () {}, // Add action here if needed
         child: Text(
           text,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 14,
+            fontSize: (14 / 360) * deviceWidth, // ✅ Responsive font size
             decoration: TextDecoration.underline,
           ),
         ),

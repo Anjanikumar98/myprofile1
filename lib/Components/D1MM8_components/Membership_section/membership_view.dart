@@ -11,22 +11,23 @@ import '../../../Controllers/D1MM8_Controllers/periodic_selector_controller.dart
 import 'membership_model.dart';
 
 class MembershipPlansView extends StatelessWidget {
-
-  final MembershipController controller = Get.find();
-  final periodController = Get.find<PeriodController>();
+  final MembershipController controller = Get.put(MembershipController());
+  final PeriodController periodController = Get.put(PeriodController());
 
   MembershipPlansView({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      width: 412,
-      height: 623.78,
+      width: (412 / 360) * deviceWidth, // ✅ Responsive width
+      height: (623.78 / 800) * deviceHeight, // ✅ Responsive height
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(11.44),
+        borderRadius: BorderRadius.circular((11.44 / 360) * deviceWidth), // ✅ Responsive border radius
         color: Colors.white.withOpacity(0.1),
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage('assets/images/background_image_memebership.png'),
           opacity: 0.1,
           fit: BoxFit.cover,
@@ -35,14 +36,19 @@ class MembershipPlansView extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 14.31, sigmaY: 14.31),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 25, 20, 25),
+          padding: EdgeInsets.fromLTRB(
+            (20 / 360) * deviceWidth, // ✅ Responsive padding
+            (25 / 800) * deviceHeight,
+            (20 / 360) * deviceWidth,
+            (25 / 800) * deviceHeight,
+          ),
           child: Column(
             children: [
               // Title Section
               CustomTitle(
-                width: 372,
-                height: 52,
-                gap: 2.86,
+                width: (372 / 360) * deviceWidth, // ✅ Responsive width
+                height: (52 / 800) * deviceHeight, // ✅ Responsive height
+                gap: (2.86 / 360) * deviceWidth, // ✅ Responsive gap
                 backgroundText: 'Plan',
                 frontTextSegments: [
                   TextSegment(
@@ -51,32 +57,39 @@ class MembershipPlansView extends StatelessWidget {
                   ),
                   TextSegment(
                     text: 'Memberships',
-                    color: Color(0xFFB8FE22),
+                    color: const Color(0xFFB8FE22),
                   ),
                 ],
               ),
 
-              SizedBox(height: 10),
+              SizedBox(height: (10 / 800) * deviceHeight), // ✅ Responsive spacing
 
               // Period Toggle
               PeriodSelector(),
 
-              SizedBox(height: 10),
+              SizedBox(height: (10 / 800) * deviceHeight),
 
               CustomDivider(),
 
-              SizedBox(height: 10),
+              SizedBox(height: (10 / 800) * deviceHeight),
 
               // Plans List
-              Container(
-                width: 372,
-                height: 448.99,
-                child: Obx(() => ListView.builder(
-                  itemCount: controller.plans.length,
-                  itemBuilder: (context, index) => MembershipCard(
-                    plan: controller.plans[index], // Pass the plan object
-                  ),
-                )),
+              SizedBox(
+                height: (448.99 / 800) * deviceHeight, // Keep responsive height
+                child: Obx(() {
+                  if (controller.plans.isEmpty) {
+                    return Center(child: CircularProgressIndicator()); // Show loader if no data
+                  }
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: controller.plans.map((plan) => Padding(
+                        padding: EdgeInsets.only(right: (10 / 360) * deviceWidth),
+                        child: MembershipCard(plan: plan),
+                      )).toList(),
+                    ),
+                  );
+                }),
               ),
             ],
           ),

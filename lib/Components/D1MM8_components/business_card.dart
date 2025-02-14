@@ -8,133 +8,141 @@ class BusinessCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 382,
-      height: 599.7,
-      child: Stack(
-        children: [
-          // Background Blur Overlay
-          Positioned.fill(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 2.86, sigmaY: 2.86),
-              child: Container(
-                color: Colors.black.withOpacity(0.25),
-              ),
-            ),
-          ),
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
 
-          // Main Content
-          Positioned.fill(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.72),
-                gradient: const LinearGradient(
-                  colors: [
-                    Color.fromRGBO(18, 18, 18, 0.25),
-                    Color.fromRGBO(255, 255, 255, 0.1),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+    return SizedBox(
+      width: (382 / 360) * deviceWidth,
+      height: (599.7 / 800) * deviceHeight,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular((5.72 / 360) * deviceWidth),
+        child: Stack(
+          children: [
+            // Background Blur Overlay
+            Positioned.fill(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 1.5, sigmaY: 1.5),
+                child: Container(
+                  color: Colors.black.withOpacity(0.25),
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Business Name Header
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Expanded(
-                          child:
-                              Divider(color: Color(0xFFB8FE22), thickness: 2)),
-                      const SizedBox(width: 8),
-                      Text(
-                        "Business Name",
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: const Color(0xFFB8FE22),
-                            ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Expanded(
-                          child:
-                              Divider(color: Color(0xFFB8FE22), thickness: 2)),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
+            ),
 
-                  // Tagline
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: const TextSpan(
-                      style: TextStyle(fontFamily: 'Poppins'),
+            // Main Content
+            Positioned.fill(
+              child: Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: (15 / 360) * deviceWidth),
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.circular((5.72 / 360) * deviceWidth),
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color.fromRGBO(18, 18, 18, 0.25),
+                      Color.fromRGBO(255, 255, 255, 0.1),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Business Name Header
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        TextSpan(
-                          text: "Tagline ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.italic,
-                            color: Color(0xFFB8FE22),
-                          ),
+                        const Flexible(
+                            child: Divider(
+                                color: Color(0xFFB8FE22), thickness: 2)),
+                        SizedBox(width: (8 / 360) * deviceWidth),
+                        Text(
+                          "Business Name",
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontSize: (24 / 360) * deviceWidth,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xFFB8FE22),
+                                  ),
                         ),
-                        TextSpan(
-                          text: "Entered by Manager or Owner of ",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
-                        ),
-                        TextSpan(
-                          text: "Business",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.italic,
-                            color: Color(0xFFB8FE22),
-                          ),
-                        ),
+                        SizedBox(width: (8 / 360) * deviceWidth),
+                        const Flexible(
+                            child: Divider(
+                                color: Color(0xFFB8FE22), thickness: 2)),
                       ],
                     ),
-                  ),
-                  const SizedBox(height: 15),
+                    SizedBox(height: (15 / 800) * deviceHeight),
 
-                  // Description
-                  const Text(
-                    "At [Business Name], we believe in empowering individuals to lead healthier and more fulfilling lives. Our tailored programs and state-of-the-art facilities are designed to help you achieve your fitness goals.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Poppins',
-                      color: Color(0xFFF4F4F4),
-                      height: 1.5,
+                    // Tagline
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: (20 / 360) * deviceWidth),
+                        children: const [
+                          TextSpan(
+                            text: "Tagline ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.italic,
+                              color: Color(0xFFB8FE22),
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Entered by Manager or Owner of ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "Business",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.italic,
+                              color: Color(0xFFB8FE22),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
+                    SizedBox(height: (15 / 800) * deviceHeight),
 
-                  // Get Started Button (Primary Button)
-                  PrimaryButton(
-                    buttonWidth: 148,
-                    buttonHeight: 42,
-                    buttonText: 'Get Started',
-                    onTap: () {},
-                    isEnabled: true,
-                    textColor: Colors.white,
-                    borderColor: const Color(0xFFB8FE22),
-                    hasIcon: true,
-                    icon: const Icon(Icons.arrow_forward, size: 18, color: Colors.white),
-                  )
+                    // Description
+                    Text(
+                      "At [Business Name], we believe in empowering individuals to lead healthier and more fulfilling lives. Our tailored programs and state-of-the-art facilities are designed to help you achieve your fitness goals.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: (14 / 360) * deviceWidth,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Poppins',
+                        color: const Color(0xFFF4F4F4),
+                        height: 1.5,
+                      ),
+                    ),
+                    SizedBox(height: (20 / 800) * deviceHeight),
 
-                ],
+                    // Get Started Button (Primary Button)
+                    PrimaryButton(
+                      buttonWidth: (148 / 360) * deviceWidth,
+                      buttonHeight: (42 / 800) * deviceHeight,
+                      buttonText: 'Get Started',
+                      onTap: () {},
+                      isEnabled: true,
+                      textColor: Colors.white,
+                      borderColor: const Color(0xFFB8FE22),
+                      hasIcon: true,
+                      icon: const Icon(Icons.arrow_forward,
+                          size: 18, color: Colors.white),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -16,6 +16,9 @@ class PriceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     // Determine colors based on plan type
     final bool isSessionBased = planType == "Session-Based Plan";
     final Color primaryColor = isSessionBased
@@ -23,40 +26,45 @@ class PriceCard extends StatelessWidget {
         : Color(0xFF55A6C4); // Blue Tint
 
     final Color backgroundColor = isSessionBased
-        ? Color(0xB8FE224D) // Transparent Green Overlay
-        : Color(0x558AC44D); // Transparent Blue Overlay
+        ? Color.fromRGBO(184, 254, 34, 0.3) // ✔ Correct 30% transparency
+        : Color.fromRGBO(85, 166, 196, 0.3); // ✔ Correct 30% transparency
 
     return Container(
-      width: 188.79,
-      height: 95.09,
-      padding: const EdgeInsets.fromLTRB(11.21, 5.6, 11.21, 5.6),
+      width: (188.79 / 360) * deviceWidth, // ✔ Scales dynamically
+      height: (95.09 / 800) * deviceHeight, // ✔ Scales dynamically
+      padding: EdgeInsets.fromLTRB(
+        (11.21 / 360) * deviceWidth,
+        (5.6 / 800) * deviceHeight,
+        (11.21 / 360) * deviceWidth,
+        (5.6 / 800) * deviceHeight,
+      ),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(5.6),
+        borderRadius: BorderRadius.circular((5.6 / 360) * deviceWidth),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Membership Name
           SizedBox(
-            height: 24,
+            height: (24 / 800) * deviceHeight,
             child: Text(
               membershipName,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: "Barlow Semi Condensed",
                 fontWeight: FontWeight.w700,
                 fontStyle: FontStyle.italic,
-                fontSize: 20,
+                fontSize: (20 / 800) * deviceHeight,
                 color: Colors.white,
               ),
             ),
           ),
 
-          const SizedBox(height: 2.8),
+          SizedBox(height: (2.8 / 800) * deviceHeight),
 
           // Price Section
           SizedBox(
-            height: 30,
+            height: (30 / 800) * deviceHeight,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -66,11 +74,11 @@ class PriceCard extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Pontano Sans",
                     fontWeight: FontWeight.w500,
-                    fontSize: 14.01,
+                    fontSize: (14.01 / 800) * deviceHeight,
                     color: primaryColor,
                   ),
                 ),
-                const SizedBox(width: 2),
+                SizedBox(width: (2 / 360) * deviceWidth),
 
                 // Price Amount
                 Text(
@@ -78,22 +86,23 @@ class PriceCard extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Barlow Semi Condensed",
                     fontWeight: FontWeight.w700,
-                    fontSize: 25.21,
+                    fontSize: (25.21 / 800) * deviceHeight,
                     color: primaryColor,
                   ),
                 ),
 
-                const SizedBox(width: 2),
+                SizedBox(width: (2 / 360) * deviceWidth),
 
                 // Per Month
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 2.8),
-                  child: const Text(
+                  padding: EdgeInsets.symmetric(
+                      vertical: (2.8 / 800) * deviceHeight),
+                  child: Text(
                     "Per Month",
                     style: TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w500,
-                      fontSize: 8.96,
+                      fontSize: (8.96 / 800) * deviceHeight,
                       color: Color(0xFFF4F4F4),
                     ),
                   ),
@@ -102,24 +111,25 @@ class PriceCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 2.8),
+          SizedBox(height: (2.8 / 800) * deviceHeight),
 
           // Divider
           Container(
-            width: 166.38,
-            height: 4.48,
+            width: (166.38 / 360) * deviceWidth,
+            height: (4.48 / 800) * deviceHeight,
             decoration: BoxDecoration(
               border: Border(
-                bottom: BorderSide(color: Colors.white.withOpacity(0.5), width: 1),
+                bottom:
+                    BorderSide(color: Colors.white.withOpacity(0.5), width: 1),
               ),
             ),
           ),
 
-          const SizedBox(height: 2.8),
+          SizedBox(height: (2.8 / 800) * deviceHeight),
 
           // Rating & Plan Section
           SizedBox(
-            height: 17,
+            height: (17 / 800) * deviceHeight,
             child: Row(
               children: [
                 // Rating
@@ -127,31 +137,32 @@ class PriceCard extends StatelessWidget {
                   children: [
                     Text(
                       rating.toString(),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: "Barlow Semi Condensed",
                         fontWeight: FontWeight.w700,
                         fontStyle: FontStyle.italic,
-                        fontSize: 14.01,
+                        fontSize: (14.01 / 800) * deviceHeight,
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(width: 2.8),
+                    SizedBox(width: (2.8 / 360) * deviceWidth),
 
-                    // Star Icon (Replace with actual half-star icon)
-                    const Icon(Icons.star, size: 10, color: Colors.blue),
+                    // Star Icon
+                    Icon(Icons.star,
+                        size: (10 / 800) * deviceHeight, color: Colors.blue),
                   ],
                 ),
 
-                const SizedBox(width: 4.48),
+                SizedBox(width: (4.48 / 360) * deviceWidth),
 
                 // Divider
                 Container(
-                  width: 2.24,
-                  height: 17,
+                  width: (2.24 / 360) * deviceWidth,
+                  height: (17 / 800) * deviceHeight,
                   color: Colors.white.withOpacity(0.5),
                 ),
 
-                const SizedBox(width: 4.48),
+                SizedBox(width: (4.48 / 360) * deviceWidth),
 
                 // Plan Type
                 Text(
@@ -159,7 +170,7 @@ class PriceCard extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w600,
-                    fontSize: 7.84,
+                    fontSize: (7.84 / 800) * deviceHeight,
                     color: primaryColor,
                   ),
                 ),

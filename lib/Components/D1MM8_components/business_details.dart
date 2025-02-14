@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'business_card.dart';
 
 class BusinessDetails extends StatelessWidget {
@@ -6,6 +7,9 @@ class BusinessDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWidth = MediaQuery.of(context).size.width;
+
     return Stack(
       children: [
         // Background Image
@@ -19,29 +23,44 @@ class BusinessDetails extends StatelessWidget {
         // Dark Overlay for Readability
         Positioned.fill(
           child: Container(
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
                   Color(0xFF063434),
-                  Color.fromRGBO(18, 18, 18, 0.25),
+                  Color.fromRGBO(18, 18, 18,
+                      0.35), // Increased opacity for better readability
                 ],
-                stops: [0.0, 0.314],
+                stops: [0.0, 0.35], // Adjusted gradient stop
               ),
-              color: Colors.black.withOpacity(0.5), // ✅ Ensures dark overlay
             ),
+          ),
+        ),
+
+        // Optional Blur Effect (if needed)
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(
+                sigmaX: 1.5, sigmaY: 1.5), // Reduced blur intensity
+            child: Container(color: Colors.transparent),
           ),
         ),
 
         // Main Content
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.fromLTRB(15, 136, 15, 14.31),
+          padding: EdgeInsets.fromLTRB(
+            (15 / 360) * deviceWidth,
+            (136 / 800) * deviceHeight,
+            (15 / 360) * deviceWidth,
+            (14.31 / 800) * deviceHeight,
+          ),
           child: Column(
-            children: const [
-              SizedBox(height: 16),
-              BusinessCard(),
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: (16 / 800) * deviceHeight),
+              const BusinessCard(), // Ensure this widget doesn't add extra blur
             ],
           ),
         ),

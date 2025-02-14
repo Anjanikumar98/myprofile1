@@ -7,24 +7,32 @@ class FeaturesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      width: 188.79,
-      height: 177.05,
-      padding: const EdgeInsets.symmetric(vertical: 4.48),
+      width: deviceWidth * 0.5, // Responsive width
+      height: deviceHeight * 0.22, // Responsive height
+      padding: EdgeInsets.symmetric(vertical: deviceHeight * 0.0056),
       decoration: BoxDecoration(
         color: Color(0xFF063434), // Dark greenish background
-        borderRadius: BorderRadius.circular(7.84),
+        borderRadius: BorderRadius.circular(deviceWidth * 0.022),
       ),
       child: Scrollbar(
         thickness: 3.0, // Thinner scrollbar
-        radius: const Radius.circular(7.84),
+        radius: Radius.circular(deviceWidth * 0.022),
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(
-                top: 4.48, right: 1.68, bottom: 4.48, left: 5.6),
+            padding: EdgeInsets.only(
+                top: deviceHeight * 0.0056,
+                right: deviceWidth * 0.0046,
+                bottom: deviceHeight * 0.0056,
+                left: deviceWidth * 0.0156),
             child: Column(
               children: features
-                  .map((feature) => _buildFeatureItem(feature))
+                  .map((feature) =>
+                      _buildFeatureItem(feature, deviceHeight, deviceWidth))
                   .toList(),
             ),
           ),
@@ -33,39 +41,39 @@ class FeaturesList extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureItem(String feature) {
+  Widget _buildFeatureItem(
+      String feature, double deviceHeight, double deviceWidth) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 11.21),
+      padding: EdgeInsets.only(bottom: deviceHeight * 0.01),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Checkmark Circle
           Container(
-            width: 11.2,
-            height: 11.2,
-            padding: const EdgeInsets.all(0.56),
+            width: deviceWidth * 0.03,
+            height: deviceWidth * 0.03,
+            padding: EdgeInsets.all(deviceWidth * 0.0015),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.transparent,
               border: Border.all(color: Color(0xFFCBFB5E), width: 1.0),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.check,
-              size: 8.0,
+              size: deviceWidth * 0.02,
               color: Color(0xFFCBFB5E),
             ),
           ),
-          const SizedBox(width: 5.6),
+          SizedBox(width: deviceWidth * 0.0156),
 
           // Feature Text
-          SizedBox(
-            width: 153.5,
+          Expanded(
             child: Text(
               feature,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w400,
-                fontSize: 8,
+                fontSize: deviceHeight * 0.0125,
                 height: 1.5,
                 color: Colors.white,
               ),

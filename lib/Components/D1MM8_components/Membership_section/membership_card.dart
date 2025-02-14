@@ -24,22 +24,23 @@ class MembershipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double baseWidth = isRecommended ? 200 : (screenWidth * 0.5);
-    double baseHeight = isRecommended ? 428.987 : (baseWidth * (405.26 / 200));
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
+    double baseWidth =
+        isRecommended ? (200 / 360) * deviceWidth : (0.5 * deviceWidth);
+    double baseHeight = isRecommended
+        ? (428.987 / 800) * deviceHeight
+        : (baseWidth * (405.26 / 200));
 
     List<InfoModel> getAdditionalInfoByPlanType() {
       switch (plan.name) {
         case "Session-Based Plan":
           return [
             InfoModel(
-                boldInt: 30,
-                bottomString: "Sessions",
-                topRightString: "Count"),
+                boldInt: 30, bottomString: "Sessions", topRightString: "Count"),
             InfoModel(
-                boldInt: 90,
-                bottomString: "Validity",
-                topRightString: "Days"),
+                boldInt: 90, bottomString: "Validity", topRightString: "Days"),
             InfoModel(
                 boldInt: 100,
                 bottomString: "Per Session",
@@ -49,9 +50,7 @@ class MembershipCard extends StatelessWidget {
           return [
             InfoModel(boldInt: 0, bottomString: "Sessions", topRightString: ""),
             InfoModel(
-                boldInt: 90,
-                bottomString: "Validity",
-                topRightString: "Days"),
+                boldInt: 90, bottomString: "Validity", topRightString: "Days"),
             InfoModel(
                 boldInt: 100,
                 bottomString: "Per Session",
@@ -65,18 +64,18 @@ class MembershipCard extends StatelessWidget {
     Widget cardContent = Container(
       width: baseWidth,
       height: baseHeight,
-      padding: EdgeInsets.all(baseWidth * 0.028),
+      padding: EdgeInsets.all((10 / 360) * deviceWidth),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(baseWidth * 0.028),
+        borderRadius: BorderRadius.circular((10 / 360) * deviceWidth),
         border: Border.all(
           color: isRecommended ? Color(0xFFB8FE22) : Color(0xFF376C7F),
-          width: baseWidth * 0.0056,
+          width: (2 / 360) * deviceWidth,
         ),
         color: Colors.white.withOpacity(0.3),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
-            blurRadius: baseWidth * 0.14,
+            blurRadius: (10 / 360) * deviceWidth,
           )
         ],
       ),
@@ -84,27 +83,29 @@ class MembershipCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: baseWidth * 0.944,
-            height: baseHeight * 0.973,
-            padding: EdgeInsets.all(baseWidth * 0.028),
+            width: (340 / 360) * deviceWidth,
+            height: (390 / 800) * deviceHeight,
+            padding: EdgeInsets.all((10 / 360) * deviceWidth),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(baseWidth * 0.056),
+              borderRadius: BorderRadius.circular((20 / 360) * deviceWidth),
               color: Colors.white.withOpacity(0.2),
             ),
             child: Column(
               children: [
                 Container(
-                  width: baseWidth * 0.944,
-                  height: baseHeight * 0.234,
+                  width: (340 / 360) * deviceWidth,
+                  height: (80 / 800) * deviceHeight,
                   padding: EdgeInsets.symmetric(
-                      horizontal: baseWidth * 0.056,
-                      vertical: baseHeight * 0.014),
+                      horizontal: (20 / 360) * deviceWidth,
+                      vertical: (5 / 800) * deviceHeight),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(baseWidth * 0.028),
+                    borderRadius:
+                        BorderRadius.circular((10 / 360) * deviceWidth),
                     color: Color(0x55A6C44D),
                     boxShadow: [
                       BoxShadow(
-                          blurRadius: baseWidth * 0.14, color: Colors.black26)
+                          blurRadius: (10 / 360) * deviceWidth,
+                          color: Colors.black26)
                     ],
                   ),
                   child: PriceCard(
@@ -114,34 +115,39 @@ class MembershipCard extends StatelessWidget {
                     rating: plan.rating,
                   ),
                 ),
-                SizedBox(height: baseHeight * 0.014),
+                SizedBox(height: (10 / 800) * deviceHeight),
                 AdditionalInfo(
-                  width: baseWidth * 0.944,
+                  width: (340 / 360) * deviceWidth,
                   listOfAdditionalInfo: getAdditionalInfoByPlanType(),
                 ),
-                SizedBox(height: baseHeight * 0.014),
+                SizedBox(height: (10 / 800) * deviceHeight),
                 PrimaryButton(
-                  buttonWidth: baseWidth * 0.944,
-                  buttonHeight: baseHeight * 0.067,
+                  buttonWidth: (340 / 360) * deviceWidth,
+                  buttonHeight: (50 / 800) * deviceHeight,
                   buttonText: 'Get Started',
                   onTap: () {},
                   isEnabled: true,
                 ),
-                SizedBox(height: baseHeight * 0.014),
+                SizedBox(height: (10 / 800) * deviceHeight),
                 Divider(color: Colors.white.withOpacity(0.3), thickness: 1),
-                SizedBox(height: baseHeight * 0.014),
+                SizedBox(height: (10 / 800) * deviceHeight),
                 featureContainer(
-                    text: "Key Features",
-                    backgroundColor: Colors.white.withOpacity(0.9),
-                    width: baseWidth * 0.944),
-                SizedBox(height: baseHeight * 0.014),
+                  text: "Key Features",
+                  backgroundColor: Colors.white.withOpacity(0.9),
+                  width: (340 / 360) * deviceWidth,
+                  deviceWidth: deviceWidth,
+                  deviceHeight: deviceHeight,
+                ),
+                SizedBox(height: (10 / 800) * deviceHeight),
                 Container(
-                  width: baseWidth * 0.944,
-                  height: baseHeight * 0.437,
-                  padding: EdgeInsets.symmetric(vertical: baseHeight * 0.011),
+                  width: (340 / 360) * deviceWidth,
+                  height: (150 / 800) * deviceHeight,
+                  padding:
+                      EdgeInsets.symmetric(vertical: (5 / 800) * deviceHeight),
                   decoration: BoxDecoration(
                     color: Color(0xFF063434),
-                    borderRadius: BorderRadius.circular(baseWidth * 0.039),
+                    borderRadius:
+                        BorderRadius.circular((10 / 360) * deviceWidth),
                   ),
                   child: FeaturesList(
                     features: List.generate(
@@ -151,7 +157,7 @@ class MembershipCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: baseHeight * 0.014),
+                SizedBox(height: (10 / 800) * deviceHeight),
               ],
             ),
           )
@@ -163,16 +169,23 @@ class MembershipCard extends StatelessWidget {
       return Stack(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(5.6),
+            borderRadius: BorderRadius.circular((5.6 / 360) * deviceWidth),
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 28.014, sigmaY: 28.014),
+              filter: ImageFilter.blur(
+                sigmaX: (28.014 / 360) * deviceWidth,
+                sigmaY: (28.014 / 800) * deviceHeight,
+              ),
               child: Container(
-                width: baseWidth + 10,
-                height: baseHeight + 10,
-                padding: EdgeInsets.all(5.6),
+                width: baseWidth + ((10 / 360) * deviceWidth),
+                height: baseHeight + ((10 / 800) * deviceHeight),
+                padding: EdgeInsets.all((5.6 / 360) * deviceWidth),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.6),
-                  border: Border.all(color: Color(0xFFB8FE22), width: 1.12),
+                  borderRadius:
+                      BorderRadius.circular((5.6 / 360) * deviceWidth),
+                  border: Border.all(
+                    color: Color(0xFFB8FE22),
+                    width: (1.12 / 360) * deviceWidth,
+                  ),
                   color: Colors.transparent,
                 ),
                 alignment: Alignment.topCenter,
@@ -181,7 +194,7 @@ class MembershipCard extends StatelessWidget {
                     Text(
                       outerLayerText,
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: (12 / 800) * deviceHeight,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFFB8FE22),
                       ),
@@ -201,6 +214,8 @@ class MembershipCard extends StatelessWidget {
 
   Widget featureContainer({
     required double width,
+    required double deviceWidth,
+    required double deviceHeight,
     double height = 15,
     double padding = 5.6,
     String text = "Key Features",
@@ -216,14 +231,17 @@ class MembershipCard extends StatelessWidget {
   }) {
     return Container(
       width: width,
-      height: height,
-      padding: EdgeInsets.symmetric(horizontal: padding),
+      height: (height / 800) * deviceHeight,
+      padding: EdgeInsets.symmetric(horizontal: (padding / 360) * deviceWidth),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(559.73),
+        borderRadius: BorderRadius.circular((20 / 360) * deviceWidth),
       ),
       alignment: Alignment.center,
-      child: Text(text, style: textStyle),
+      child: Text(
+        text,
+        style: textStyle.copyWith(fontSize: (10 / 800) * deviceHeight),
+      ),
     );
   }
 }

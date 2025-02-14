@@ -7,6 +7,9 @@ class TrainersSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWidth = MediaQuery.of(context).size.width;
+
     final List<TrainerModel> trainers = [
       TrainerModel(
         imageUrl:
@@ -35,28 +38,36 @@ class TrainersSection extends StatelessWidget {
     ];
 
     return Container(
-      width: 412,
-      height: 382.91,
-      padding: const EdgeInsets.fromLTRB(20, 25, 20, 25),
+      width: (412 / 360) * deviceWidth, // ✅ Responsive width
+      height: (382.91 / 800) * deviceHeight, // ✅ Responsive height
+      padding: EdgeInsets.fromLTRB(
+        (20 / 360) * deviceWidth, // ✅ Responsive left padding
+        (25 / 800) * deviceHeight, // ✅ Responsive top padding
+        (20 / 360) * deviceWidth, // ✅ Responsive right padding
+        (25 / 800) * deviceHeight, // ✅ Responsive bottom padding
+      ),
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(11.44),
+        borderRadius: BorderRadius.circular(
+            (11.44 / 360) * deviceWidth), // ✅ Responsive border radius
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 25,),
+          SizedBox(height: (25 / 800) * deviceHeight), // ✅ Responsive spacing
+
           /// **Heading Section**
           SizedBox(
-            width: 372,
-            height: 52,
+            width: (372 / 360) * deviceWidth, // ✅ Responsive width
+            height: (52 / 800) * deviceHeight, // ✅ Responsive height
             child: Stack(
               alignment: Alignment.center,
               children: [
                 Text(
                   "Trainers",
                   style: TextStyle(
-                    fontSize: 48,
+                    fontSize:
+                        (48 / 360) * deviceWidth, // ✅ Responsive font size
                     fontWeight: FontWeight.bold,
                     color: Colors.white.withOpacity(0.1),
                     letterSpacing: 2,
@@ -69,7 +80,8 @@ class TrainersSection extends StatelessWidget {
                       TextSpan(
                         text: "Meet your ",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: (24 / 360) *
+                              deviceWidth, // ✅ Responsive font size
                           fontWeight: FontWeight.w700,
                           fontFamily: "Urbanist",
                           color: Colors.white,
@@ -79,7 +91,8 @@ class TrainersSection extends StatelessWidget {
                       TextSpan(
                         text: "Trainers",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: (24 / 360) *
+                              deviceWidth, // ✅ Responsive font size
                           fontWeight: FontWeight.w700,
                           fontFamily: "Urbanist",
                           color: Color(0xFF7ED957),
@@ -94,16 +107,16 @@ class TrainersSection extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 10), // Spacing
+          SizedBox(height: (10 / 800) * deviceHeight), // ✅ Responsive spacing
 
           /// **Divider**
           Container(
-            width: 372,
-            height: 2.29,
+            width: (372 / 360) * deviceWidth, // ✅ Responsive width
+            height: (2.29 / 800) * deviceHeight, // ✅ Responsive height
             color: Colors.white.withOpacity(0.3),
           ),
 
-          const SizedBox(height: 10), // Spacing
+          SizedBox(height: (10 / 800) * deviceHeight), // ✅ Responsive spacing
 
           /// **Trainers Mobile Section**
           Expanded(
@@ -112,7 +125,9 @@ class TrainersSection extends StatelessWidget {
               child: Row(
                 children: trainers.map((trainer) {
                   return Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: EdgeInsets.only(
+                        right:
+                            (10 / 360) * deviceWidth), // ✅ Responsive padding
                     child: TrainerCard(trainer: trainer),
                   );
                 }).toList(),
@@ -124,4 +139,3 @@ class TrainersSection extends StatelessWidget {
     );
   }
 }
-

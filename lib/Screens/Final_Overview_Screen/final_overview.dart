@@ -1,6 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../Components/global_components/buttons/primary_button.dart';
 import '../../Components/global_components/buttons/secondary_button.dart';
 import '../../Controllers/D1MM8_Controllers/final_screen_controller.dart';
@@ -22,186 +23,203 @@ class _FinalOverviewState extends State<FinalOverview> {
     double deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: SafeArea(
-        minimum: EdgeInsets.only(top: (10 / 800) * deviceHeight),
-        child: SingleChildScrollView(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight((56 / 800) * deviceHeight), // Responsive AppBar height
+        child: SafeArea(
           child: Container(
-            width: deviceWidth,
-            height: deviceHeight,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: const AssetImage('assets/images/gym_app_background.jpg'),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
-                  const Color(0xFF063434).withOpacity(0.8),
-                  BlendMode.srcOver,
-                ),
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  const Color(0xFF121212).withOpacity(0.25),
-                  const Color(0xFF121212).withOpacity(0.25),
-                ],
-              ),
-            ),
-            child: Column(
+            color: Colors.transparent,
+            padding: EdgeInsets.symmetric(horizontal: (16 / 360) * deviceWidth),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(height: (40 / 800) * deviceHeight),
-
-                // Top AppBar with Back Button and Notifications
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: (16 / 360) * deviceWidth),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: () => Get.back(),
-                            icon: const Icon(Icons.arrow_back,
-                                color: Colors.white),
-                          ),
-                          SizedBox(width: (8 / 360) * deviceWidth),
-                          const Text(
-                            "My Plan",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Get.back(),
+                      icon: Icon(Icons.arrow_back, color: Colors.white, size: (24 / 360) * deviceWidth),
+                    ),
+                    SizedBox(width: (8 / 360) * deviceWidth),
+                    Text(
+                      "My Plan",
+                      style: TextStyle(
+                        fontSize: (18 / 360) * deviceWidth,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                width: (32 / 360) * deviceWidth,
-                                height: (32 / 800) * deviceHeight,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  shape: BoxShape.circle,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.notifications_none,
-                                size: 24,
-                                color: Colors.white,
-                              ),
-                              Positioned(
-                                top: 1,
-                                left: 16,
-                                child: Container(
-                                  padding: const EdgeInsets.all(4),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.blue,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Text(
-                                    '4',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 8,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(width: (16 / 360) * deviceWidth),
-                          const Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(Icons.circle, size: 4, color: Colors.white),
-                              SizedBox(height: 4),
-                              Icon(Icons.circle, size: 4, color: Colors.white),
-                              SizedBox(height: 4),
-                              Icon(Icons.circle, size: 4, color: Colors.white),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-
-                // Stats Section
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: (8 / 360) * deviceWidth,
-                      vertical: (16 / 800) * deviceHeight),
-                  child: Column(
-                    children: [
-                      // Headings Section
-                      Container(
-                        width: (282 / 360) * deviceWidth,
-                        height: (73 / 800) * deviceHeight,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: (10 / 360) * deviceWidth),
-                        child: Column(
-                          children: [
-                            // "Final Overview" Text
-                            Text(
-                              "Final Overview",
-                              textAlign: TextAlign.center, // ✅ Moved here
-                              style: TextStyle(
-                                fontFamily: "Barlow Semi Condensed",
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.italic,
-                                fontSize: (40 / 360) * deviceWidth,
-                                height: (48 / 48), // Line-height = 48px
-                                letterSpacing: 0,
-                                color: Colors.white,
-                              ),
-                            ),
-
-                            SizedBox(
-                                height: (4 / 800) * deviceHeight), // Gap: 4px
-
-                            // "Check the final look of your webpage." Text
-                            Text(
-                              "Check the final look of your webpage.",
-                              textAlign: TextAlign.center, // ✅ Moved here
-                              style: TextStyle(
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w400,
-                                fontSize: (14 / 360) * deviceWidth,
-                                height: (21 / 21), // Line-height = 21px
-                                letterSpacing: 0,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      SizedBox(
-                          height: (20 / 800) *
-                              deviceHeight), // Gap: 20px (from Figma)
-
-                      // Call FinalScreen inside Flexible
-                      Column(
-                        children: [
-                          Expanded(
-                            child: FinalScreen(), // Scrollable content
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: (32 / 360) * deviceWidth,
+                          height: (32 / 800) * deviceHeight,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.withOpacity(0.5),
+                            shape: BoxShape.circle,
                           ),
-                          // Fixed CTA & Checkbox Section
-                          _buildFixedCTASection(deviceWidth, deviceHeight),
-                        ],
-                      )
-                    ],
-                  ),
+                        ),
+                        Icon(Icons.notifications_none, size: (24 / 360) * deviceWidth, color: Colors.white),
+                        Positioned(
+                          top: (1 / 800) * deviceHeight,
+                          left: (16 / 360) * deviceWidth,
+                          child: Container(
+                            padding: EdgeInsets.all((4 / 360) * deviceWidth),
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Text(
+                              '4',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: (8 / 360) * deviceWidth,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: (16 / 360) * deviceWidth),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.circle, size: (4 / 360) * deviceWidth, color: Colors.white),
+                        SizedBox(height: (4 / 800) * deviceHeight),
+                        Icon(Icons.circle, size: (4 / 360) * deviceWidth, color: Colors.white),
+                        SizedBox(height: (4 / 800) * deviceHeight),
+                        Icon(Icons.circle, size: (4 / 360) * deviceWidth, color: Colors.white),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
+        ),
+      ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // ✅ Background Image
+            Container(
+              width: double.infinity,
+              height: deviceHeight, // ✅ Cover full screen height
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/gym_app_background.jpg'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black
+                        .withOpacity(0.8), // ✅ Dark overlay for readability
+                    BlendMode.darken, // ✅ Better darkening effect
+                  ),
+                ),
+              ),
+            ),
+
+            // ✅ Foreground Blur + Gradient Layer
+            ClipRRect(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // ✅ 10px blur
+                child: Container(
+                  width: deviceWidth, // ✅ Full Width
+                  height: deviceHeight, // ✅ Full Height
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.transparent, // ✅ Fully transparent at top
+                        Colors.black.withOpacity(0.95), // ✅ 95% dark at bottom
+                      ],
+                      stops: [0.4, 0.75], // ✅ Defines transition points
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // ✅ Main Content (Title Fixed, Content Scrollable)
+            Column(
+              children: [
+                SizedBox(height: (16 / 800) * deviceHeight),
+
+                // ✅ Fixed Title
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: (10 / 360) * deviceWidth),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Final Overview",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: (24 / 360) * deviceWidth,
+                          fontWeight: FontWeight.w700,
+                          fontStyle: FontStyle.italic, // ✅ Italic
+                          color: Colors.white, // ✅ White text
+                        ),
+                      ),
+                      SizedBox(
+                          height: (4 / 800) * deviceHeight), // ✅ Gap of 4px
+                      Text(
+                        "Check the final look of your webpage.", // ✅ Subtitle
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: (16 / 360) * deviceWidth,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(height: (20 / 800) * deviceHeight), // ✅ Small Gap
+
+                // ✅ Main Area Container
+                Expanded(
+                  child: Container(
+                    width: (344 / 360) * deviceWidth, // ✅ Responsive Width
+                    height: double.infinity, // ✅ Expand dynamically based on content
+                    constraints: BoxConstraints(
+                      maxHeight: (650 / 800) * deviceHeight, // ✅ Max Height of 650px
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15), // ✅ Rounded corners
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15), // ✅ Ensures rounded blur effect
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50), // ✅ 50px Blur
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0x55A6C44D), // ✅ Transparent Primary Blue Overlay
+                            borderRadius: BorderRadius.circular(15), // ✅ Rounded corners
+                          ),
+                          padding: EdgeInsets.all((10 / 360) * deviceWidth), // ✅ 10px gap inside
+                          child: SingleChildScrollView( // ✅ Enables scrolling for long forms
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                FinalScreen(),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -272,39 +290,42 @@ class _FinalOverviewState extends State<FinalOverview> {
   }
 
   Widget _buildActionButtons(double deviceWidth, double deviceHeight) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: (2 / 360) * deviceWidth,
-        vertical: (10 / 800) * deviceHeight,
-      ),
-      child: Row(
-        children: [
-          // Secondary Button (Back)
-          SecondaryButton(
-            width: (75 / 360) * deviceWidth,
-            height: (45 / 800) * deviceHeight,
-            secondaryText: "Back",
-            isEnabled: true,
-            isPrimary: false,
-            hasIcon: false,
-            OnTap: () {
-              // Get.back();
-            },
-          ),
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: (2 / 360) * deviceWidth,
+          vertical: (10 / 800) * deviceHeight,
+        ),
+        child: Row(
+          children: [
+            // Secondary Button (Back)
+            SecondaryButton(
+              width: (75 / 360) * deviceWidth,
+              height: (45 / 800) * deviceHeight,
+              secondaryText: "Back",
+              isEnabled: true,
+              isPrimary: false,
+              hasIcon: false,
+              OnTap: () {
+                // Get.back();
+              },
+            ),
 
-          SizedBox(width: (10 / 360) * deviceWidth), // Gap: 10px
+            SizedBox(width: (10 / 360) * deviceWidth), // Gap: 10px
 
-          // Primary Button (Make it Live)
-          PrimaryButton(
-            buttonWidth: (256 / 360) * deviceWidth,
-            buttonHeight: (45 / 800) * deviceHeight,
-            buttonText: "Make it Live",
-            isEnabled: true,
-            onTap: () {
-              // Perform action for "Make it Live"
-            },
-          ),
-        ],
+            // Primary Button (Make it Live)
+            PrimaryButton(
+              buttonWidth: (256 / 360) * deviceWidth,
+              buttonHeight: (45 / 800) * deviceHeight,
+              backgroundColor: Colors.green.shade300,
+              buttonText: "Make it Live",
+              isEnabled: true,
+              onTap: () {
+                // Perform action for "Make it Live"
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'Screens/Final_Overview_Screen/final_overview.dart';
 import 'routes.dart';
 
 void main() {
@@ -18,11 +17,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFF1A1A1A),
       ),
       initialRoute: '/FinalOverview',
-      getPages: [
-        GetPage(
-            name: '/FinalOverview',
-            page: () => FinalOverview()), // ✅ Add route here
-      ],
+      getPages: appRoutes,
     );
   }
 }
