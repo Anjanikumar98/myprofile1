@@ -14,7 +14,6 @@ class SecondaryButton extends StatefulWidget {
     required this.hasIcon,
     this.iconPath,
     required this.OnTap,
-
     this.borderWidth,
     this.borderColor,
     this.borderRadius,
@@ -58,53 +57,53 @@ class _SecondaryButtonState extends State<SecondaryButton> {
                 (widget.isPrimary && widget.isEnabled
                     ? Colors.transparent
                     : !widget.isPrimary && widget.isEnabled
-                    ? const Color(0xFF55A6C4)
-                    : widget.isPrimary && !widget.isEnabled
-                    ? const Color(0xFF4D7584)
-                    : Colors.transparent),
+                        ? const Color(0xFF55A6C4)
+                        : widget.isPrimary && !widget.isEnabled
+                            ? const Color(0xFF4D7584)
+                            : Colors.transparent),
             width: widget.borderWidth ??
                 (widget.isPrimary && widget.isEnabled
                     ? 0
                     : !widget.isPrimary && widget.isEnabled
-                    ? 2
-                    : widget.isPrimary && !widget.isEnabled
-                    ? 1
-                    : 0),
+                        ? 2
+                        : widget.isPrimary && !widget.isEnabled
+                            ? 1
+                            : 0),
           ),
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
         ),
         child: Center(
           child: widget.isPrimary && widget.isEnabled
               ? _buildButtonContent(
-            widget.hasIcon,
-            widget.iconPath ?? 'assets/images/edit_icon.svg',
-            widget.primaryText ?? '',
-          )
+                  widget.hasIcon,
+                  widget.iconPath ?? 'assets/images/edit_icon.svg',
+                  widget.primaryText ?? '',
+                )
               : !widget.isPrimary && widget.isEnabled
-              ? _buildButtonContent(
-            widget.hasIcon,
-            widget.iconPath ?? 'assets/images/edit_icon.svg',
-            widget.secondaryText,
-          )
-              : widget.isPrimary && !widget.isEnabled
-              ? Text(
-            widget.primaryText ?? '',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Color(0xFFCCCCCC),
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-            ),
-          )
-              : Text(
-            widget.primaryText ?? '',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-            ),
-          ),
+                  ? _buildButtonContent(
+                      widget.hasIcon,
+                      widget.iconPath ?? 'assets/images/edit_icon.svg',
+                      widget.secondaryText,
+                    )
+                  : widget.isPrimary && !widget.isEnabled
+                      ? Text(
+                          widget.primaryText ?? '',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Color(0xFFCCCCCC),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        )
+                      : Text(
+                          widget.primaryText ?? '',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
         ),
       ),
     );

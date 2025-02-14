@@ -11,6 +11,7 @@ import '../../../Controllers/D1MM8_Controllers/periodic_selector_controller.dart
 import 'membership_model.dart';
 
 class MembershipPlansView extends StatelessWidget {
+
   final MembershipController controller = Get.find();
   final periodController = Get.find<PeriodController>();
 

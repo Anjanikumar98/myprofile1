@@ -11,11 +11,9 @@ class ContactUsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final ContactUsController controller = Get.put(ContactUsController());
 
-    return Scaffold(
-      // ✅ FIX: Wrap in Scaffold to avoid Material Widget Error
-      backgroundColor: Colors.black, // ✅ Matches UI background
-      body: SingleChildScrollView(
-        // ✅ FIX: Prevent overflow by making it scrollable
+    return Container(
+      color: Colors.black,
+      child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 25, 20, 25),
           child: Column(
@@ -75,7 +73,8 @@ class ContactUsSection extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w700,
-                                  color: Color(0xFFB8FE22), // ✅ Icons/Primary Green applied to text
+                                  color: Color(
+                                      0xFFB8FE22), // ✅ Icons/Primary Green applied to text
                                 ),
                               ),
                             ),
@@ -155,8 +154,7 @@ class ContactUsSection extends StatelessWidget {
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 4, vertical: 2),
                                         decoration: BoxDecoration(
-                                          color: Color(
-                                              0xFFB8FE22),
+                                          color: Color(0xFFB8FE22),
                                           borderRadius:
                                               BorderRadius.circular(4),
                                         ),
@@ -210,9 +208,9 @@ class ContactUsSection extends StatelessWidget {
                                   ),
                                   SizedBox(height: 15),
                                   Label(
-                                      fieldLabel: 'Description',
-                                      optionalTextAvailable: 'optional',
-                                      ),
+                                    fieldLabel: 'Description',
+                                    optionalTextAvailable: 'optional',
+                                  ),
                                   SizedBox(height: 15),
                                   DescriptionInputField(
                                     enabled: true,

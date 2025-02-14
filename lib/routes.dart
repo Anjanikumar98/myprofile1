@@ -13,11 +13,11 @@ import 'Components/local_components/business_name.dart';
 import 'Screens/D1CM6/business_connection_screen.dart';
 import 'Screens/D1CM6/personal_detail_screen.dart';
 import 'Screens/D1CM6/trainers_screen.dart';
-import 'final_overview_screen.dart';
+import 'Screens/Final_Overview_Screen/final_overview.dart';
+// import 'final_overview_screen.dart'; // Ensure this exists
 
 final List<GetPage> appRoutes = [
-
-  GetPage(name: '/FinalScreen', page: () => FinalScreen()),
+  // GetPage(name: '/FinalScreen', page: () => FinalScreen()), // ✅ Ensure imported
   // GetPage(name: '/Services', page: () => Services()),
   // GetPage(name: '/ContactUsSection', page: () => ContactUsSection()),
   // GetPage(name: '/TrainersSection', page: () => TrainersSection()),
@@ -27,6 +27,6 @@ final List<GetPage> appRoutes = [
   //     page: () => BusinessConnectionScreen()),
   // GetPage(name: '/TrainersScreen', page: () => TrainersScreen()),
   // GetPage(name: '/PersonalDetailForm', page: () => PersonalDetailForm()),
-  GetPage(name: '/PersonalDetailScreen', page: () => PersonalDetailScreen()),
-  GetPage(name: '/WebPageFormScreen', page: () => WebPageFormScreen()),
+  // GetPage(name: '/PersonalDetailScreen', page: () => PersonalDetailScreen()),
+  GetPage(name: '/FinalOverview', page: () => FinalOverview()), // ✅ Route is correct
 ];

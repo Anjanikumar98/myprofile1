@@ -14,31 +14,29 @@ import 'Controllers/D1MM8_Controllers/final_screen_controller.dart';
 import 'Controllers/D1MM8_Controllers/navbar_controller.dart';
 
 class FinalScreen extends StatelessWidget {
-  final FinalScreenController controller =
-      Get.put(FinalScreenController()); // ✅ Add this
+  FinalScreen({super.key});
+
+  final FinalScreenController controller = Get.put(FinalScreenController());
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          _buildBackground(), // Background Image
+    // Define device width and height inside the build method
+    double deviceHeight = MediaQuery.of(context).size.height;
+    double deviceWidth = MediaQuery.of(context).size.width;
 
+    return Center(
+      child: Stack(
+        children: [
+          _buildBackground(),
           Column(
             children: [
-              _buildHeader(),
-              SizedBox(
-                height: 35,
-              ),
-              // ✅ Navbar added on top
+              SizedBox(height: (15 / 800) * deviceHeight),
               CustomNavbar(),
               Expanded(
                 child: SingleChildScrollView(
                   child: _buildScrollableContent(),
                 ),
               ),
-              _buildTermsAndConditions(),
-              _buildActionButtons(),
             ],
           ),
         ],
@@ -55,33 +53,18 @@ class FinalScreen extends StatelessWidget {
           image: AssetImage("assets/images/background_image_final_screen1.png"),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
-            Colors.black.withOpacity(0.3), // ✅ Adjust image visibility
-            BlendMode.darken, // ✅ Blend image with gradient
+            Colors.black.withOpacity(0.3),
+            BlendMode.darken,
           ),
         ),
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color(0xFF063434).withOpacity(0.9), // ✅ Added opacity
-            Color(0xFF063434).withOpacity(0.8),
+            const Color(0xFF063434).withOpacity(0.9),
+            const Color(0xFF063434).withOpacity(0.8),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      child: Column(
-        children: [
-          Text(
-            "Final Overview",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          Text("Check the final look of your webpage."),
-        ],
       ),
     );
   }
@@ -98,66 +81,6 @@ class FinalScreen extends StatelessWidget {
         ContactUsSection(),
         FlexFitFooter(),
       ],
-    );
-  }
-
-  Widget _buildTermsAndConditions() {
-    // ✅ Removed unnecessary parameter
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Obx(() => Checkbox(
-                value: controller.isChecked.value, // Observe value
-                checkColor: Colors.green.shade300,
-                onChanged: (bool? value) {
-                  controller.isChecked.value = value ?? false; // Update state
-                },
-              )),
-          Expanded(
-            child: Text(
-              "I accept the terms and conditions and acknowledge that I have read and agree to abide by the company’s policies and guidelines.",
-              style: TextStyle(fontSize: 12, color: Colors.white),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActionButtons() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        children: [
-          Expanded(
-            child: SecondaryButton(
-              width: 67,
-              height: 37,
-              secondaryText: "Back",
-              isEnabled: true,
-              isPrimary: false,
-              hasIcon: false,
-              OnTap: () {
-                // Get.back();
-              },
-            ),
-          ),
-          SizedBox(width: 10), // Space between buttons
-          Expanded(
-            child: PrimaryButton(
-              buttonWidth: 252,
-              buttonHeight: 41,
-              buttonText: "Make it Live",
-              isEnabled: true,
-              onTap: () {
-                // Action for making it live
-              },
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

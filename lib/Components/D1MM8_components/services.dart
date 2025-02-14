@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myprofile1/Components/D1MM8_components/service_cards.dart';
-
 import 'arrows_component.dart';
 
 class Services extends StatelessWidget {
