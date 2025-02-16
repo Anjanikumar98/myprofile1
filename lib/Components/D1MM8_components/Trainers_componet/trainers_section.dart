@@ -12,24 +12,21 @@ class TrainersSection extends StatelessWidget {
 
     final List<TrainerModel> trainers = [
       TrainerModel(
-        imageUrl:
-            "https://s3-alpha-sig.figma.com/img/87a4/dfe3/665efff43724044ed11bba723982ebe3?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=PQD8ZWtSYoQi~PvliN2~~9PfitbgzdHXJ6gAxQhd6e-hc~RB1gyloaiFW4jv9iR4TE0Ox5cMmZ4VC1sQ85NQdsWhtwByZA3CfVND4sDsDwHJpn3dzM3RwIF0mpsY56Gjv918mtbjJxesxSXknEhcwfjwVzaGWrg2fqMXDPlStPSrjRGNK8pNTEX~XLXrQmjf5bVyZMp~hjsLc--t7LewsPg1ybNxGenI9WLheKHmr97xMxOFG6LesUz2Lap~w7LlWcphHhPoCp5b0AgfGH2EHLhGc3nBj2mc0LUIsF0FiOlnRvCK6pLhIBeroiuaHschPF5Bd8QWDw1EWHLhWVsVeQ__",
+        imageUrl: "assets/images/trainee_image.jpg",
         name: "John Deo",
         position: "Head Coach",
         description:
             "With over 5 years of experience, I specialize in strength training, weight management, and injury rehabilitation.",
       ),
       TrainerModel(
-        imageUrl:
-            "https://s3-alpha-sig.figma.com/img/87a4/dfe3/665efff43724044ed11bba723982ebe3?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=PQD8ZWtSYoQi~PvliN2~~9PfitbgzdHXJ6gAxQhd6e-hc~RB1gyloaiFW4jv9iR4TE0Ox5cMmZ4VC1sQ85NQdsWhtwByZA3CfVND4sDsDwHJpn3dzM3RwIF0mpsY56Gjv918mtbjJxesxSXknEhcwfjwVzaGWrg2fqMXDPlStPSrjRGNK8pNTEX~XLXrQmjf5bVyZMp~hjsLc--t7LewsPg1ybNxGenI9WLheKHmr97xMxOFG6LesUz2Lap~w7LlWcphHhPoCp5b0AgfGH2EHLhGc3nBj2mc0LUIsF0FiOlnRvCK6pLhIBeroiuaHschPF5Bd8QWDw1EWHLhWVsVeQ__",
+        imageUrl: "assets/images/trainee_image.jpg",
         name: "John Deo",
         position: "Head Coach",
         description:
             "With over 5 years of experience, I specialize in strength training, weight management, and injury rehabilitation.",
       ),
       TrainerModel(
-        imageUrl:
-            "https://s3-alpha-sig.figma.com/img/87a4/dfe3/665efff43724044ed11bba723982ebe3?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=PQD8ZWtSYoQi~PvliN2~~9PfitbgzdHXJ6gAxQhd6e-hc~RB1gyloaiFW4jv9iR4TE0Ox5cMmZ4VC1sQ85NQdsWhtwByZA3CfVND4sDsDwHJpn3dzM3RwIF0mpsY56Gjv918mtbjJxesxSXknEhcwfjwVzaGWrg2fqMXDPlStPSrjRGNK8pNTEX~XLXrQmjf5bVyZMp~hjsLc--t7LewsPg1ybNxGenI9WLheKHmr97xMxOFG6LesUz2Lap~w7LlWcphHhPoCp5b0AgfGH2EHLhGc3nBj2mc0LUIsF0FiOlnRvCK6pLhIBeroiuaHschPF5Bd8QWDw1EWHLhWVsVeQ__",
+        imageUrl: "assets/images/trainee_image.jpg",
         name: "John Deo",
         position: "Head Coach",
         description:

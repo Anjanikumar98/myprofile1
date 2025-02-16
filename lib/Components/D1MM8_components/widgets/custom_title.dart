@@ -42,7 +42,7 @@ class CustomTitle extends StatelessWidget {
       letterSpacing: 0,
     );
 
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: Row(

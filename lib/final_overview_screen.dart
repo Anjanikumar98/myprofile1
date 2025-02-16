@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myprofile1/Screens/fotter_screen.dart';
+
 import 'Components/D1MM8_components/Membership_section/membership_view.dart';
 import 'Components/D1MM8_components/Trainers_componet/trainers_section.dart';
 import 'Components/D1MM8_components/Virtual_Tour_Section/virtual_tour_section.dart';
@@ -8,12 +8,8 @@ import 'Components/D1MM8_components/business_details.dart';
 import 'Components/D1MM8_components/contactus.dart';
 import 'Components/D1MM8_components/reviews_container.dart';
 import 'Components/D1MM8_components/services.dart';
-import 'Components/global_components/buttons/primary_button.dart';
-import 'Components/global_components/buttons/secondary_button.dart';
-import 'Controllers/D1MM8_Controllers/final_screen_controller.dart';
-import 'Controllers/D1MM8_Controllers/mebership_controller.dart';
 import 'Controllers/D1MM8_Controllers/navbar_controller.dart';
-import 'Controllers/D1MM8_Controllers/periodic_selector_controller.dart';
+import 'Screens/fotter_screen.dart';
 
 class FinalScreen extends StatefulWidget {
   const FinalScreen({super.key});
@@ -23,47 +19,69 @@ class FinalScreen extends StatefulWidget {
 }
 
 class _FinalScreenState extends State<FinalScreen> {
-  late final FinalScreenController controller;
-  late final MembershipController membershipController;
-  late final PeriodController periodController;
+  final ScrollController _scrollController = ScrollController();
+
+  // Initialize NavbarController
+  late final NavbarController _navbarController;
+
+  final GlobalKey servicesKey = GlobalKey();
+  final GlobalKey membershipKey = GlobalKey();
+  final GlobalKey trainersKey = GlobalKey();
+  final GlobalKey contactKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
-    controller = Get.put(FinalScreenController(), permanent: true);
-    membershipController = Get.put(MembershipController(), permanent: true);
-    periodController = Get.put(PeriodController(), permanent: true);
+    _navbarController =
+        Get.put(NavbarController(_scrollController)); // Inject controller
   }
 
-  @override
-  void dispose() {
-    Get.delete<FinalScreenController>();
-    Get.delete<MembershipController>();
-    Get.delete<PeriodController>();
-    super.dispose();
+  void _scrollToSection(GlobalKey key) {
+    final context = key.currentContext;
+    if (context != null) {
+      Scrollable.ensureVisible(
+        context,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    double deviceHeight = MediaQuery.of(context).size.height;
-    double deviceWidth = MediaQuery.of(context).size.width;
-
-    return Center(
-      child: Stack(
+    return Scaffold(
+      drawer: Navbar(onItemSelected: (String section) {
+        _scrollToSection(getSectionKey(section));
+      }),
+      body: Stack(
         children: [
-          Positioned.fill(child: _buildBackground()),
-          SizedBox(
-            height: deviceHeight,
-            child: Column(
-              children: [
-                CustomNavbar(),
-                Expanded(
-                  // ✅ Ensures content stays within screen bounds
-                  child: SingleChildScrollView(
-                    child: _buildScrollableContent(),
-                  ),
+          ListView(
+            controller: _scrollController,
+            padding: EdgeInsets.zero,
+            children: [
+              BusinessDetails(),
+              Container(key: servicesKey, child: Services()),
+              VirtualTourSection(),
+              Container(key: membershipKey, child: MembershipPlansView()),
+              Container(key: trainersKey, child: TrainersSection()),
+              ReviewsContainer(),
+              Container(key: contactKey, child: ContactUsSection()),
+              FlexFitFooter(),
+            ],
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              title: Text("FlexFit"),
+              backgroundColor: Colors.green,
+              leading: Builder(
+                builder: (context) => IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () => Scaffold.of(context).openDrawer(),
                 ),
-              ],
+              ),
             ),
           ),
         ],
@@ -71,52 +89,18 @@ class _FinalScreenState extends State<FinalScreen> {
     );
   }
 
-  Widget _buildBackground() {
-    return Stack(
-      children: [
-        // Background Image
-        Positioned.fill(
-          child: Image.asset(
-            "assets/images/background_image_final_screen1.png",
-            fit: BoxFit.cover,
-            color: Colors.black.withOpacity(0.3), // ✅ Apply opacity directly
-            colorBlendMode: BlendMode.darken,
-          ),
-        ),
-        // Gradient Overlay
-        Positioned.fill(
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  const Color(0xFF063434).withOpacity(0.9),
-                  const Color(0xFF063434).withOpacity(0.8),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildScrollableContent() {
-    return Column(
-      mainAxisSize: MainAxisSize.min, // ✅ Prevents infinite height issues
-      children: [
-        BusinessDetails(),
-        Services(),
-        VirtualTourSection(),
-        MembershipPlansView(),
-        TrainersSection(),
-        ReviewsContainer(),
-        ContactUsSection(),
-        FlexFitFooter(),
-      ],
-    );
+  GlobalKey getSectionKey(String section) {
+    switch (section) {
+      case "Services":
+        return servicesKey;
+      case "Membership":
+        return membershipKey;
+      case "Trainers":
+        return trainersKey;
+      case "Contact Us":
+        return contactKey;
+      default:
+        return servicesKey;
+    }
   }
 }
-
-

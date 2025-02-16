@@ -44,19 +44,16 @@ class TrainerCard extends StatelessWidget {
               children: [
                 /// **Blur Effect**
                 ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular((8.28 / 360) * deviceWidth),
+                  borderRadius: BorderRadius.circular((8.28 / 360) * deviceWidth),
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
-                      sigmaX: (12.93 / 360) *
-                          deviceWidth, // ✅ Responsive blur effect
-                      sigmaY: (12.93 / 360) * deviceWidth,
+                      sigmaX: (6.5 / 360) * deviceWidth, // 🔽 Reduced blur effect
+                      sigmaY: (6.5 / 360) * deviceWidth,
                     ),
                     child: Container(
-                      width: (191.72 / 360) * deviceWidth, // ✅ Responsive width
-                      height:
-                          (99.41 / 800) * deviceHeight, // ✅ Responsive height
-                      color: Colors.white.withOpacity(0.3), // Adjust opacity
+                      width: (191.72 / 360) * deviceWidth,
+                      height: (99.41 / 800) * deviceHeight,
+                      color: Colors.white.withOpacity(0.3), // ✅ Adjust opacity if needed
                     ),
                   ),
                 ),
@@ -71,71 +68,86 @@ class TrainerCard extends StatelessWidget {
                     borderRadius:
                         BorderRadius.circular((8.28 / 360) * deviceWidth),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      /// **Trainer Name**
-                      Text(
-                        trainer.name,
-                        style: TextStyle(
-                          fontFamily: "Barlow Semi Condensed",
-                          fontWeight: FontWeight.w800, // Make it bolder
-                          fontStyle: FontStyle.italic,
-                          fontSize: (18 / 360) * deviceWidth, // Slightly larger
-                          height: 1.2,
-                          color: Colors.white,
-                          decoration: TextDecoration.none,
-                        ),
-                      ),
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        /// **Trainer Name**
+                        SizedBox(
+                          width: (183.4482879638672 / 360) * deviceWidth, // ✅ Set width for both
+                          height: (39 / 800) * deviceHeight, // ✅ Ensure height is 39px
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              /// **Trainer Name**
+                              Text(
+                                trainer.name,
+                                style: TextStyle(
+                                  fontFamily: "Barlow Semi Condensed",
+                                  fontWeight: FontWeight.w700, // ✅ Bolder as per design
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: (18 / 360) * deviceWidth, // ✅ Matches design
+                                  height: 1.2, // ✅ Correct line-height
+                                  color: Colors.white, // ✅ Matches design
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
 
-                      SizedBox(
-                          height:
-                              (2 / 800) * deviceHeight), // ✅ Responsive spacing
+                              SizedBox(height: (2 / 800) * deviceHeight), // ✅ Responsive spacing
 
-                      /// **Trainer Position**
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: (8 / 360) * deviceWidth, // More padding
-                          vertical: (4 / 800) * deviceHeight,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFB8FE22), // Primary Green
-                          borderRadius:
-                              BorderRadius.circular((4 / 360) * deviceWidth),
-                        ),
-                        child: Text(
-                          trainer.position,
-                          style: TextStyle(
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w500,
-                            fontSize: (10 / 360) *
-                                deviceWidth, // ✅ Responsive font size
-                            color: Colors.black,
-                            decoration: TextDecoration.none,
+                              /// **Trainer Position**
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: (8 / 360) * deviceWidth,
+                                  vertical: (4 / 800) * deviceHeight,
+                                ),
+                                child: Text(
+                                  trainer.position,
+                                  style: TextStyle(
+                                    fontFamily: "Poppins",
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: (10 / 360) * deviceWidth, // ✅ Matches design
+                                    height: 1.5, // ✅ Matches line-height (15px)
+                                    letterSpacing: 0, // ✅ No letter spacing
+                                    color: Color(0xFFB8FE22),
+                                    decoration: TextDecoration.none,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ),
 
-                      SizedBox(
-                          height:
-                              (6 / 800) * deviceHeight), // ✅ Responsive spacing
+                        SizedBox(
+                            height: (6 / 800) *
+                                deviceHeight), // ✅ Responsive spacing
 
-                      /// **Trainer Description**
-                      Text(
-                        trainer.description,
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w500,
-                          fontSize: (8 / 360) * deviceWidth,
-                          height: 1.5,
-                          color: Colors.white,
-                          decoration: TextDecoration.none,
-                        ),
-                        maxLines: 4, // Increased for better readability
-                        overflow: TextOverflow.ellipsis,
-                        softWrap: true, // Allows wrapping
-                      ),
-                    ],
+                        /// **Trainer Description**
+                        SizedBox(
+                          width: (183.4482879638672 / 360) *
+                              deviceWidth, // ✅ Responsive width
+                          height: (48 / 800) *
+                              deviceHeight, // ✅ Ensures proper height
+                          child: Text(
+                            trainer.description,
+                            style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w500,
+                              fontSize: (8 / 360) *
+                                  deviceWidth, // ✅ Matches design (8px)
+                              height: 1.5, // ✅ Matches line-height (12px)
+                              letterSpacing: 0, // ✅ No letter spacing
+                              color: Color(
+                                  0xFFF4F4F4), // ✅ Matches Off-White text color
+                              decoration: TextDecoration.none,
+                            ),
+                            maxLines: 4, // ✅ Ensures proper truncation
+                            overflow: TextOverflow.ellipsis, // ✅ Handles text overflow
+                            softWrap: true, // ✅ Allows wrapping
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],

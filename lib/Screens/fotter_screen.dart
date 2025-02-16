@@ -23,31 +23,42 @@ class FlexFitFooter extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/images/Property 1=Ballerina.png',
-                width: (50 / 360) * deviceWidth, // ✅ Responsive logo size
-                height: (50 / 800) * deviceHeight,
-                errorBuilder: (context, error, stackTrace) => const Icon(
-                  Icons.fitness_center,
-                  color: Colors.limeAccent,
-                  size: 28,
+              /// **Logo Frame**
+              SizedBox(
+                width: (116 / 360) * deviceWidth,
+                height: (30 / 800) * deviceHeight,
+                child: Image.asset(
+                  'assets/images/Property 1=Ballerina.png',
+                  width: (30 / 360) * deviceWidth,
+                  height: (30 / 800) * deviceHeight,
+                  errorBuilder: (context, error, stackTrace) => const Icon(
+                    Icons.fitness_center,
+                    color: Colors.limeAccent,
+                    size: 28,
+                  ),
                 ),
               ),
-              SizedBox(width: (8 / 360) * deviceWidth),
+
+              SizedBox(width: (10 / 360) * deviceWidth),
+
+              /// **FlexFit Text**
               Text(
                 'FlexFit',
                 style: TextStyle(
                   color: Colors.limeAccent,
-                  fontSize: (22 / 360) * deviceWidth,
-                  fontWeight: FontWeight.bold,
+                  fontSize: (25 / 360) * deviceWidth, // ✅ Matches Figma 25px
+                  fontWeight: FontWeight.w700, // ✅ Matches Figma 700
+                  height: 27.5 / 25, // ✅ Matches line-height 27.5px
                 ),
               ),
             ],
           ),
+
           SizedBox(height: (16 / 800) * deviceHeight),
 
           /// **Navigation Links**
           Wrap(
+            alignment: WrapAlignment.center,
             spacing: (12 / 360) * deviceWidth, // ✅ Even spacing
             children: [
               _navLink('Services', deviceWidth),
@@ -60,6 +71,7 @@ class FlexFitFooter extends StatelessWidget {
 
           /// **Social Media Icons**
           Wrap(
+            alignment: WrapAlignment.center,
             spacing: (12 / 360) * deviceWidth,
             children: [
               FontAwesomeIcons.facebookF,
@@ -116,7 +128,8 @@ class FlexFitFooter extends StatelessWidget {
         text,
         style: TextStyle(
           color: Colors.white,
-          fontSize: (14 / 360) * deviceWidth, // ✅ Responsive font size
+          fontSize: (12 / 360) * deviceWidth, // ✅ Corrected to 12px
+          height: 1.5, // ✅ Matches line-height 18px (18/12)
         ),
       ),
     );
@@ -128,7 +141,7 @@ class FlexFitFooter extends StatelessWidget {
       child: Icon(
         icon,
         color: Colors.limeAccent,
-        size: (22 / 360) * deviceWidth, // ✅ Responsive icon size
+        size: (24 / 360) * deviceWidth,
       ),
     );
   }
@@ -142,7 +155,10 @@ class FlexFitFooter extends StatelessWidget {
           text,
           style: TextStyle(
             color: Colors.white,
-            fontSize: (14 / 360) * deviceWidth, // ✅ Responsive font size
+            fontSize: (12 / 360) * deviceWidth, // ✅ Corrected font size
+            fontWeight: FontWeight.w400, // ✅ Added correct font weight
+            fontFamily: 'Poppins', // ✅ Ensuring correct font family
+            height: 1.5, // ✅ Matching 18px line height
             decoration: TextDecoration.underline,
           ),
         ),

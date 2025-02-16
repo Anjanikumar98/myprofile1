@@ -164,7 +164,6 @@ class PersonalDetail extends StatelessWidget {
                                 hintText: "Enter City",
                                 uniqueTextInputFieldId: 'City',
                                 width: screenWidth * (324 / 360) * (0.5) - 5,
-                                title: 'City',
                               ),
                               TextInputField(
                                 enabled: true,
@@ -172,7 +171,6 @@ class PersonalDetail extends StatelessWidget {
                                 hintText: "Enter State",
                                 uniqueTextInputFieldId: 'State',
                                 width: screenWidth * (324 / 360) * (0.5) - 5,
-                                title: 'State',
                               ),
                             ],
                           ),
@@ -187,7 +185,6 @@ class PersonalDetail extends StatelessWidget {
                                 hintText: "Enter Country",
                                 uniqueTextInputFieldId: 'Country',
                                 width: screenWidth * (324 / 360) * (0.5) - 5,
-                                title: 'Country',
                               ),
                               PinInputField(
                                 hintText: "_ _ _ _ _ _",
@@ -204,8 +201,6 @@ class PersonalDetail extends StatelessWidget {
                             hintText: "Enter your colony of locality",
                             uniqueTextInputFieldId: 'AddressLine2',
                             width: screenHeight * 0.975,
-                            title: 'Address Line 2',
-                            title2: '(optional)',
                           ),
                           const SizedBox(
                             height: 10,

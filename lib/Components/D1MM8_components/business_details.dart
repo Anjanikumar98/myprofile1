@@ -60,7 +60,7 @@ class BusinessDetails extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(height: (16 / 800) * deviceHeight),
-              const BusinessCard(), // Ensure this widget doesn't add extra blur
+               BusinessCard(), // Ensure this widget doesn't add extra blur
             ],
           ),
         ),
