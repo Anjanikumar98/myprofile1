@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 class FeaturesList extends StatelessWidget {
   final List<String> features;
 
-  FeaturesList({required this.features, Key? key}) : super(key: key);
+  const FeaturesList({required this.features, super.key});
 
   @override
   Widget build(BuildContext context) {
-
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
 

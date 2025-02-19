@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get.dart';
 
 class DescriptionInputFieldController extends GetxController {
   final RxString _currentFocusedFieldId = ''.obs;

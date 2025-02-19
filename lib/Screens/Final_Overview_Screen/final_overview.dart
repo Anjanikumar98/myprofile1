@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:myprofile1/final_overview_screen.dart';
+import 'package:myprofile1/D1MM8/final_overview_screen.dart';
 import '../../Components/global_components/buttons/primary_button.dart';
 import '../../Components/global_components/buttons/secondary_button.dart';
 import '../../Controllers/D1MM8_Controllers/final_screen_controller.dart';
@@ -142,9 +142,9 @@ class _FinalOverviewState extends State<FinalOverview> {
                         children: [
                           Column(
                             children: [
-                              SizedBox(height: (16 / 800) * deviceHeight),
+                              SizedBox(height: 16 ),
                               _buildHeader(deviceWidth, deviceHeight),
-                              SizedBox(height: (20 / 800) * deviceHeight),
+                              SizedBox(height:20 ),
 
                               /// Ensure `_buildFinalScreen` does not get overlapped
                               SizedBox(
@@ -177,57 +177,12 @@ class _FinalOverviewState extends State<FinalOverview> {
     );
   }
 
-  Widget _buildMainArea(double deviceWidth, double deviceHeight) {
-    return Stack(
-      children: [
-        // Background Gradient
-        Container(
-          width: deviceWidth, // Full width
-          height: (696 / 800) * deviceHeight, // Adjust height proportionally
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.transparent, // rgba(0, 0, 0, 0)
-                Colors.black.withOpacity(0.95), // rgba(0, 0, 0, 0.95)
-              ],
-              stops: [0.4, 0.75], // Matches Figma values (40% → 75%)
-            ),
-          ),
-        ),
-        // Blur Effect
-        Positioned.fill(
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              color: Colors.black
-                  .withOpacity(0.1), // Light overlay to enhance blur
-            ),
-          ),
-        ),
-        // Main Content with Padding
-        Padding(
-          padding: EdgeInsets.only(
-            top: (16 / 800) * deviceHeight,
-            right: (8 / 360) * deviceWidth,
-            bottom: (16 / 800) * deviceHeight,
-            left: (8 / 360) * deviceWidth,
-          ),
-          child: Column(
-            children: [],
-          ),
-        ),
-      ],
-    );
-  }
-
   // Header Section
   Widget _buildHeader(double deviceWidth, double deviceHeight) {
     return Container(
-      width: (282 / 360) * deviceWidth,
-      height: (73 / 800) * deviceHeight,
-      padding: EdgeInsets.symmetric(horizontal: (10 / 360) * deviceWidth),
+      width: 282,
+      height: 73,
+      padding: EdgeInsets.symmetric(horizontal: 10),
       alignment: Alignment.center,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -240,14 +195,14 @@ class _FinalOverviewState extends State<FinalOverview> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: (26 / 360) * deviceWidth, // Reduced slightly
+                fontSize: 26, // Reduced slightly
                 fontWeight: FontWeight.w700,
                 color: Colors.white,
                 fontStyle: FontStyle.italic,
               ),
             ),
           ),
-          SizedBox(height: (2 / 800) * deviceHeight), // Reduced spacing
+          SizedBox(height: 2), // Reduced spacing
           Flexible(
             child: Text(
               "Check the final look of your webpage.",
@@ -255,7 +210,7 @@ class _FinalOverviewState extends State<FinalOverview> {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: (14 / 360) * deviceWidth, // Reduced slightly
+                fontSize: 14, // Reduced slightly
                 fontWeight: FontWeight.w400,
                 color: Colors.white70,
               ),
@@ -269,22 +224,24 @@ class _FinalOverviewState extends State<FinalOverview> {
   // Final Screen Container
   Widget _buildFinalScreen(double deviceWidth, double deviceHeight) {
     return Container(
-      width: (344 / 360) * deviceWidth, // ✅ Matches Figma width
+      width: 344, // Fixed width
       constraints: BoxConstraints(
-        maxHeight: (650 / 800) * deviceHeight, // ✅ Corrected max height
+        maxHeight: 650, // Fixed max height
       ),
       decoration: BoxDecoration(
-        color: Color(0x4D55A6C4), // ✅ Matches Figma background
-        borderRadius:
-            BorderRadius.circular(15), // ✅ Matches Figma border-radius
+        color: Color(0x4D55A6C4), // Fixed background color
+        borderRadius: BorderRadius.circular(15), // Fixed border-radius
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15), // ✅ Maintains rounded corners
+        borderRadius: BorderRadius.circular(15), // Fixed rounded corners
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // ✅ Reduced blur
+          filter: ImageFilter.blur(
+            sigmaX: 10, // Fixed blur value
+            sigmaY: 10, // Fixed blur value
+          ),
           child: SizedBox(
-            height: (571 / 800) * deviceHeight, // ✅ Corrected height usage
-            child: FinalScreen(), // ✅ Ensures correct rendering
+            height: double.infinity, // Corrected height usage
+            child: FinalScreen(), // Ensures correct rendering
           ),
         ),
       ),
@@ -294,11 +251,18 @@ class _FinalOverviewState extends State<FinalOverview> {
   Widget _buildFixedCTASection(double deviceWidth, double deviceHeight) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(8), // ✅ Match Figma
-        topRight: Radius.circular(8), // ✅ Match Figma
+        topLeft: Radius.circular(
+            (8 / 360) * deviceWidth), // Responsive radius based on device width
+        topRight: Radius.circular(
+            (8 / 360) * deviceWidth), // Responsive radius based on device width
       ),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10), // ✅ Apply blur effect
+        filter: ImageFilter.blur(
+          sigmaX:
+              (10 / 360) * deviceWidth, // Responsive blur based on device width
+          sigmaY:
+              (10 / 360) * deviceWidth, // Responsive blur based on device width
+        ),
         child: Container(
           width: (345 / 360) * deviceWidth, // ✅ Match Figma width
           height: (158 / 800) * deviceHeight, // ✅ Match Figma height
@@ -316,8 +280,10 @@ class _FinalOverviewState extends State<FinalOverview> {
               end: Alignment.topCenter,
             ),
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8), // ✅ Match Figma
-              topRight: Radius.circular(8), // ✅ Match Figma
+              topLeft: Radius.circular((8 / 360) *
+                  deviceWidth), // Responsive radius based on device width
+              topRight: Radius.circular((8 / 360) *
+                  deviceWidth), // Responsive radius based on device width
             ),
           ),
           child: Column(
@@ -344,7 +310,7 @@ class _FinalOverviewState extends State<FinalOverview> {
                 height: (24 / 800) * deviceHeight,
                 child: Checkbox(
                   value: controller.isChecked.value,
-                  activeColor: Colors.blue,
+                  activeColor: Color(0xFFB8FE22),
                   onChanged: (bool? value) {
                     controller.isChecked.value = value ?? false;
                   },
@@ -395,7 +361,8 @@ class _FinalOverviewState extends State<FinalOverview> {
             isPrimary: false,
             hasIcon: false,
             borderColor: Color(0xFF55A6C4), // ✅ Figma Blue Border
-            borderWidth: 2, // ✅ Figma specifies border width of 2px
+            borderWidth: (2 / 360) *
+                deviceWidth, // ✅ Figma specifies border width of 2px
             OnTap: () => Get.back(),
           ),
           PrimaryButton(
@@ -405,6 +372,8 @@ class _FinalOverviewState extends State<FinalOverview> {
             buttonWidth: (256 / 360) * deviceWidth, // ✅ Match Figma width
             buttonHeight: (45 / 800) * deviceHeight, // ✅ Match Figma height
             borderColor: Color(0xFFB8FE22), // ✅ Figma Green Border
+            textColor: Color(0xFF121212),
+            backgroundColor: Color(0xFFB8FE22),
           ),
         ],
       ),

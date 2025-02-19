@@ -11,7 +11,7 @@ class CustomDropdown extends StatefulWidget {
   final Color backgroundColor; // ✅ Add background color parameter
 
   const CustomDropdown({
-    Key? key,
+    super.key,
     required this.items,
     required this.hint,
     required this.onItemSelected,
@@ -20,7 +20,7 @@ class CustomDropdown extends StatefulWidget {
     required this.width,
     required this.padding, // ✅ Initialize padding
     required this.backgroundColor, // ✅ Initialize background color
-  }) : super(key: key);
+  });
 
   @override
   _CustomDropdownState createState() => _CustomDropdownState();

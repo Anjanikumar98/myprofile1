@@ -8,6 +8,8 @@ class TermsAndConditionsController extends GetxController {
 class TermsAndConditions extends StatelessWidget {
   final TermsAndConditionsController controller = Get.put(TermsAndConditionsController());
 
+   TermsAndConditions({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(

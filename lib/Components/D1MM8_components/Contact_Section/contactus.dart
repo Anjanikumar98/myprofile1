@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:myprofile1/Components/global_components/buttons/primary_button.dart';
 import 'package:myprofile1/Components/global_components/character_input_fields/description_input.dart';
 import 'package:myprofile1/Components/global_components/character_input_fields/label.dart';
-import '../../Controllers/D1MM8_Controllers/contact_us_controller.dart';
-import '../global_components/character_input_fields/text_input_field.dart';
+import '../../../Controllers/D1MM8_Controllers/contact_us_controller.dart';
+import '../../global_components/character_input_fields/text_input_field.dart';
 
 class ContactUsSection extends StatelessWidget {
+  const ContactUsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     final ContactUsController controller = Get.put(ContactUsController());
@@ -75,11 +77,6 @@ class ContactUsSection extends StatelessWidget {
                             alignment: PlaceholderAlignment
                                 .middle, // ✅ Ensures proper vertical alignment
                             child: Container(
-                              decoration: BoxDecoration(
-                                color: const Color(
-                                    0xFFB8FE22), // ✅ Primary Green background
-                                borderRadius: BorderRadius.circular(4),
-                              ),
                               padding: EdgeInsets.symmetric(
                                 horizontal: (4 / 360) *
                                     deviceWidth, // ✅ Responsive padding
@@ -91,8 +88,8 @@ class ContactUsSection extends StatelessWidget {
                                   fontSize: (24 / 360) *
                                       deviceWidth, // ✅ Responsive font size
                                   fontWeight: FontWeight.w700,
-                                  color: Colors
-                                      .black, // ✅ Black for contrast against the green background
+                                  color: Color(
+                                      0xFFB8FE22), // ✅ Black for contrast against the green background
                                 ),
                               ),
                             ),
@@ -108,9 +105,33 @@ class ContactUsSection extends StatelessWidget {
 
               // Divider
               Container(
-                width: (372 / 360) * deviceWidth,
-                height: (2.29 / 800) * deviceHeight,
-                color: Colors.white.withOpacity(0.5),
+                width: (372 / 360) * deviceWidth, // Responsive width
+                height: (2.29 / 800) * deviceHeight, // Responsive height
+                padding: EdgeInsets.symmetric(
+                  vertical:
+                      (1.14 / 800) * deviceHeight, // Top and bottom padding
+                  horizontal:
+                      (2.86 / 360) * deviceWidth, // Left and right padding
+                ),
+                color: Colors.white
+                    .withOpacity(0.5), // Background color with 50% opacity
+                child: Center(
+                  child: Container(
+                    width: (366.27777099609375 / 360) *
+                        deviceWidth, // Line width (responsive)
+                    height: 0, // No height for the line (border used instead)
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Color(0xFF55A6C4).withOpacity(
+                              0.5), // Transparent overlay primary blue (50% opacity)
+                          width: (0.43 / 800) *
+                              deviceHeight, // Border width (responsive)
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
 
               SizedBox(height: 10 / 800 * deviceHeight),
@@ -136,11 +157,13 @@ class ContactUsSection extends StatelessWidget {
                       Container(
                         width: (372 / 360) * deviceWidth,
                         height: (199.5 / 800) * deviceHeight,
-                        color: Colors.grey[800], // Ensure it's semi-transparent if needed
+                        color: Colors.grey[
+                            800], // Ensure it's semi-transparent if needed
                         child: Center(
                           child: Image.asset(
                             'assets/images/map_locator_image.png', // Replace with the actual path to your image
-                            fit: BoxFit.cover, // Adjust as needed for how you want the image to fit
+                            fit: BoxFit
+                                .cover, // Adjust as needed for how you want the image to fit
                           ),
                         ),
                       ),
@@ -173,17 +196,14 @@ class ContactUsSection extends StatelessWidget {
                                           horizontal: (4 / 360) * deviceWidth,
                                           vertical: (2 / 800) * deviceHeight,
                                         ),
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFB8FE22),
-                                          borderRadius: BorderRadius.circular(4),
-                                        ),
                                         child: Text(
                                           "us",
                                           style: TextStyle(
                                             fontSize: (24 / 360) * deviceWidth,
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'Urbanist',
-                                            color: Colors.black, // Change text color to something visible
+                                            color: Color(
+                                                0xFFB8FE22), // Change text color to something visible
                                           ),
                                         ),
                                       ),
@@ -245,9 +265,12 @@ class ContactUsSection extends StatelessWidget {
                                     buttonHeight: (45 / 800) *
                                         deviceHeight, // ✅ Responsive height
                                     buttonText: 'Submit',
-                                    onTap: () {},
+                                    onTap: () {
+                                      // final overlay = ShowOverlay();
+                                      // overlayKey.currentState?.showOverlay(context);
+                                    },
                                     isEnabled: true,
-                                  )
+                                  ),
                                 ],
                               ),
                             ),

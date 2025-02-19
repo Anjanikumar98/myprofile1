@@ -3,6 +3,8 @@ import 'package:myprofile1/Components/global_components/buttons/primary_button.d
 import 'package:myprofile1/Components/global_components/buttons/secondary_button.dart';
 
 class ActionButtons extends StatelessWidget {
+  const ActionButtons({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(

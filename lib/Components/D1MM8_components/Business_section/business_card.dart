@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:myprofile1/Components/global_components/buttons/primary_button.dart';
 
 class BusinessCard extends StatelessWidget {
@@ -125,18 +124,21 @@ class BusinessCard extends StatelessWidget {
                     SizedBox(height: (20 / 800) * deviceHeight),
 
                     // Get Started Button (Primary Button)
+
                     PrimaryButton(
-                      buttonWidth: (148 / 360) * deviceWidth,
-                      buttonHeight: (42 / 800) * deviceHeight,
-                      buttonText: 'Get Started',
-                      backgroundColor: const Color(0xFFB8FE22),
-                      onTap: () {},
-                      isEnabled: true,
-                      textColor: const Color(0xFF063434),
-                      borderColor: const Color(0xFF063434),
-                      hasIcon: true,
-                      icon: const Icon(Icons.arrow_forward,
-                          size: 18, color: Colors.grey),
+                        buttonWidth: (148 / 360) * deviceWidth,
+                        buttonHeight: (42 / 800) * deviceHeight,
+                        buttonText: 'Get Started',
+                        backgroundColor: const Color(0xFFB8FE22),
+                        onTap: () {},
+                        isEnabled: true,
+                        textColor: const Color(0xFF063434),
+                        borderColor: const Color(0xFF063434),
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          size: 18,
+                          color: Color(0xFF063434),
+                        )
                     ),
                   ],
                 ),

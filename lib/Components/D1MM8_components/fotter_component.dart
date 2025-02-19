@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FlexFitFooter extends StatelessWidget {
-  const FlexFitFooter({Key? key}) : super(key: key);
+  const FlexFitFooter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +31,6 @@ class FlexFitFooter extends StatelessWidget {
                   'assets/images/Property 1=Ballerina.png',
                   width: (30 / 360) * deviceWidth,
                   height: (30 / 800) * deviceHeight,
-                  errorBuilder: (context, error, stackTrace) => const Icon(
-                    Icons.fitness_center,
-                    color: Colors.limeAccent,
-                    size: 28,
-                  ),
                 ),
               ),
 
@@ -45,7 +40,7 @@ class FlexFitFooter extends StatelessWidget {
               Text(
                 'FlexFit',
                 style: TextStyle(
-                  color: Colors.limeAccent,
+                  color: Color(0xFFB8FE22),
                   fontSize: (25 / 360) * deviceWidth, // ✅ Matches Figma 25px
                   fontWeight: FontWeight.w700, // ✅ Matches Figma 700
                   height: 27.5 / 25, // ✅ Matches line-height 27.5px
@@ -61,10 +56,17 @@ class FlexFitFooter extends StatelessWidget {
             alignment: WrapAlignment.center,
             spacing: (12 / 360) * deviceWidth, // ✅ Even spacing
             children: [
-              _navLink('Services', deviceWidth),
-              _navLink('Membership', deviceWidth),
-              _navLink('Trainers', deviceWidth),
-              _navLink('Contact Us', deviceWidth),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _navLink('Services', deviceWidth),
+                    _navLink('Membership', deviceWidth),
+                    _navLink('Trainers', deviceWidth),
+                    _navLink('Contact Us', deviceWidth),
+                  ],
+                ),
+              )
             ].map((widget) => InkWell(onTap: () {}, child: widget)).toList(),
           ),
           SizedBox(height: (16 / 800) * deviceHeight),
@@ -90,9 +92,14 @@ class FlexFitFooter extends StatelessWidget {
 
           /// **Divider Line**
           Container(
-            height: 1,
-            width: double.infinity,
-            color: Colors.white24,
+            height: 1.0,
+            width: 372.0, // Matches the width from CSS
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Color(0xFF666666), // Matches the border color (#666666)
+                width: 1.0, // Matches the border width (1px)
+              ),
+            ),
             margin: EdgeInsets.symmetric(vertical: (16 / 800) * deviceHeight),
           ),
 
@@ -140,7 +147,7 @@ class FlexFitFooter extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: (10 / 360) * deviceWidth),
       child: Icon(
         icon,
-        color: Colors.limeAccent,
+        color: Color(0xFFB8FE22),
         size: (24 / 360) * deviceWidth,
       ),
     );

@@ -5,14 +5,14 @@ import 'package:myprofile1/Components/global_components/character_input_fields/t
 import 'package:myprofile1/Components/location_input.dart';
 import 'package:myprofile1/Controllers/character_input_field/description_input.dart';
 import 'package:myprofile1/Controllers/character_input_field/section_break.dart';
-import 'Components/custom_dopdown.dart';
-import 'Components/global_components/character_input_fields/label.dart';
-import 'Components/global_components/multi_select_dropdown.dart';
-import 'Components/global_components/upload_file_multiple.dart';
-import 'Components/global_components/upload_file_small_single.dart';
-import 'Components/local_components/terms_condtions.dart';
-import 'Controllers/Business_Type_Controller/business_type_controller.dart';
-import 'Controllers/global_controllers/multi_select_controller.dart';
+import '../Components/custom_dopdown.dart';
+import '../Components/global_components/character_input_fields/label.dart';
+import '../Components/global_components/multi_select_dropdown.dart';
+import '../Components/global_components/upload_file_multiple.dart';
+import '../Components/global_components/upload_file_small_single.dart';
+import '../Components/local_components/terms_condtions.dart';
+import '../Controllers/Business_Type_Controller/business_type_controller.dart';
+import '../Controllers/global_controllers/multi_select_controller.dart';
 
 class WebPageFormController extends GetxController {
   // TextControllers
@@ -89,6 +89,8 @@ class WebPageFormController extends GetxController {
 }
 
 class WebPageFormScreen extends StatelessWidget {
+  const WebPageFormScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final WebPageFormController controller = Get.put(WebPageFormController());

@@ -6,11 +6,11 @@ class DropdownComponent extends StatelessWidget {
   final ValueChanged<String?> onChanged;
 
   const DropdownComponent({
-    Key? key,
+    super.key,
     required this.selectedValue,
     required this.options,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

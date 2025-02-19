@@ -12,9 +12,6 @@ class TextSegment {
 }
 
 class CustomTitle extends StatelessWidget {
-  final double width;
-  final double height;
-  final double gap;
   final String backgroundText;
   final List<TextSegment> frontTextSegments;
   final Color backgroundColor;
@@ -22,56 +19,63 @@ class CustomTitle extends StatelessWidget {
   final TextAlign textAlign;
 
   const CustomTitle({
-    Key? key,
-    this.width = 372,
-    this.height = 52,
-    this.gap = 2.86,
+    super.key,
     required this.backgroundText,
     required this.frontTextSegments,
     this.backgroundColor = Colors.white,
     this.fontSize = 24,
     this.textAlign = TextAlign.center,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final TextStyle commonStyle = GoogleFonts.urbanist(
-      fontSize: fontSize,
+      fontSize: fontSize, // Fixed font size
       fontWeight: FontWeight.w700,
-      height: 1.2, // 28.8px line height (24 * 1.2 = 28.8)
+      height: 1.2, // Correct line-height
       letterSpacing: 0,
     );
 
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Background text
-          Text(
-            backgroundText,
-            style: commonStyle.copyWith(
-              color: backgroundColor,
-            ),
-            textAlign: textAlign,
-          ),
-          SizedBox(width: gap),
-          // Front text with multiple colors
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: frontTextSegments.map((segment) {
-              return Text(
-                segment.text,
-                style: commonStyle.copyWith(
-                  color: segment.color,
+    return Align(
+      alignment: Alignment.center,
+      child: SizedBox(
+        width: 286.11, // Fixed width for the entire text box
+        height: 52, // Fixed height for the text box
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Background Text (Plans)
+            Positioned(
+              top: 2.86, // Adjusted gap for the background text
+              child: Text(
+                backgroundText, // "Plans"
+                style: TextStyle(
+                  fontFamily: "Inter", // Updated font family
+                  fontWeight: FontWeight.w700, // Font weight 700
+                  fontSize: 40, // Font size 40px
+                  height: 48.41 / 40, // Adjusted line height ratio
+                  letterSpacing: 0, // No letter spacing
+                  color: Color(0xFFFFFFFF), // Updated text color with opacity
                 ),
                 textAlign: textAlign,
-              );
-            }).toList(),
-          ),
-        ],
+              ),
+            ),
+            // Foreground Text
+            Positioned(
+              top: 2.29, // Adjusted gap for the foreground text
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: frontTextSegments.map((segment) {
+                  return Text(
+                    segment.text,
+                    style: commonStyle.copyWith(color: segment.color),
+                    textAlign: textAlign,
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

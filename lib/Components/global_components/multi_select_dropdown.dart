@@ -5,6 +5,8 @@ import '../../Controllers/global_controllers/multi_select_controller.dart';
 class MultiSelectDropdown extends StatelessWidget {
   final MultiSelectController controller = Get.put(MultiSelectController());
 
+   MultiSelectDropdown({super.key});
+
   @override
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;

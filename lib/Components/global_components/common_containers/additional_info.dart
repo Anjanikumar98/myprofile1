@@ -4,11 +4,12 @@ import '../../../models/global_models/info_element_model.dart';
 import '../../D1MM8_components/Membership_section/info_element.dart';
 
 
-
 class AdditionalInfo extends StatelessWidget {
-  const AdditionalInfo({super.key, required this.width, required this.listOfAdditionalInfo});
+  const AdditionalInfo(
+      {super.key, required this.width, required this.listOfAdditionalInfo, this.height = 77});
 
   final double width;
+  final double height;
   final List<InfoModel> listOfAdditionalInfo;
 
   @override
@@ -17,37 +18,54 @@ class AdditionalInfo extends StatelessWidget {
     double deviceWidth = MediaQuery.of(context).size.width;
 
     return ClipRRect(
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(10), bottom: Radius.circular(10)),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-        child: Container(
-          width: (width / 360) * deviceWidth,
-          height: (77 / 800) * deviceHeight,
-          color: const Color(0xFF55A6C4).withOpacity(0.3),
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(listOfAdditionalInfo.length, (index) {
-                return Row(
+        borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(10), bottom: Radius.circular(10)),
+        child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+            child: Container(
+              width: (width / 360) * deviceWidth,
+              height: 77,
+              color: const Color(0xFF55A6C4).withOpacity(0.3),
+              child: Stack(children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    InfoElement(
-                      boldInt: listOfAdditionalInfo[index].boldInt,
-                      bottomString: listOfAdditionalInfo[index].bottomString,
-                      topRightString: listOfAdditionalInfo[index].topRightString,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InfoElement(
+                            boldInt: listOfAdditionalInfo[0].boldInt,
+                            bottomString: listOfAdditionalInfo[0].bottomString,
+                            topRightString:
+                                listOfAdditionalInfo[0].topRightString),
+                        Container(
+                          height: 50,
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                        InfoElement(
+                            boldInt: listOfAdditionalInfo[1].boldInt,
+                            bottomString: listOfAdditionalInfo[1].bottomString,
+                            topRightString:
+                                listOfAdditionalInfo[1].topRightString),
+                        Container(
+                          height: 50,
+                          width: 1,
+                          color: Colors.black,
+                        ),
+                        InfoElement(
+                            boldInt: listOfAdditionalInfo[2].boldInt,
+                            bottomString: listOfAdditionalInfo[2].bottomString,
+                            topRightString:
+                                listOfAdditionalInfo[2].topRightString),
+                      ],
                     ),
-                    if (index != listOfAdditionalInfo.length - 1) // Avoid last divider
-                      Container(height: 50, width: 1, color: Colors.black),
                   ],
-                );
-              }),
-            ),
-          ),
-        ),
-      ),
-    );
+                ),
+              ]),
+            )));
   }
 }
-
 
 //
 // // import 'package:flutter/material.dart';

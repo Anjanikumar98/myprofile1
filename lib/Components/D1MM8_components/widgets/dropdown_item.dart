@@ -5,8 +5,8 @@ class DropdownItem extends StatelessWidget {
   final VoidCallback onTap;
   final bool isSelected;
 
-  DropdownItem(
-      {required this.feature, required this.onTap, required this.isSelected});
+  const DropdownItem(
+      {super.key, required this.feature, required this.onTap, required this.isSelected});
 
   @override
   Widget build(BuildContext context) {

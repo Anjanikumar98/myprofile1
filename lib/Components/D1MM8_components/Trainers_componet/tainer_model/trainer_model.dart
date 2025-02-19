@@ -21,7 +21,10 @@ class TrainerModel {
     } else if (imageUrl.startsWith("/")) {
       return Image.file(File(imageUrl), fit: BoxFit.cover);
     } else {
-      return Image.asset(imageUrl, fit: BoxFit.cover);
+      return Image.asset(
+        imageUrl,
+        fit: BoxFit.cover,
+      );
     }
   }
 }

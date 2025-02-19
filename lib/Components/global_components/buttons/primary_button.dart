@@ -9,7 +9,7 @@ class PrimaryButton extends StatefulWidget {
     required this.buttonText,
     required this.onTap,
     required this.isEnabled,
-    this.backgroundColor,
+    this.backgroundColor = const Color(0xFFB8FE22),
     this.textColor,
     this.borderColor,
     this.borderRadius,

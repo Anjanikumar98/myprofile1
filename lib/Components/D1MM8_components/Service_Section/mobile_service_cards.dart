@@ -8,13 +8,13 @@ class MobileServiceCard extends StatefulWidget {
   final IconData icon;
 
   const MobileServiceCard({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     required this.title,
     required this.description,
     required this.icon,
-  }) : super(key: key);
+  });
 
   @override
   _MobileServiceCardState createState() => _MobileServiceCardState();

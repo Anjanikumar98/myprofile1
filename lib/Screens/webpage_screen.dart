@@ -68,7 +68,7 @@
 // // // import 'package:get/get.dart';
 // // // import 'Screens/business_name_screen.dart';
 // // // import 'Screens/final_screen_overview.dart';
-// // // import 'Screens/fotter_screen.dart';
+// // // import 'Screens/fotter_component.dart';
 // // // import 'Screens/services.dart';
 // // // import 'Screens/webpage_screen.dart';
 // // // import 'web_page_creation_form.dart';

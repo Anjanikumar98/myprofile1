@@ -8,11 +8,12 @@ class NavbarController extends GetxController {
   late ScrollController scrollController;
   late Timer _iconTimer;
 
-  final List<IconData> icons = [
-    Icons.fitness_center,
-    Icons.sports_gymnastics,
-    Icons.directions_run,
-    Icons.sports_martial_arts,
+  final List<String> iconAssets = [
+    'assets/images/Property 1=Ball.png',
+    'assets/images/Property 1=Ballerina.png',
+    'assets/images/Property 1=Dumbell.png',
+    'assets/images/Property 1=Glove.png',
+    'assets/images/Property 1=Mat.png',
   ];
 
   NavbarController(this.scrollController) {
@@ -21,7 +22,7 @@ class NavbarController extends GetxController {
 
   void _startIconAnimation() {
     _iconTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      currentIcon.value = (currentIcon.value + 1) % icons.length;
+      currentIcon.value = (currentIcon.value + 1) % iconAssets.length;
     });
   }
 
@@ -33,13 +34,13 @@ class NavbarController extends GetxController {
         duration: const Duration(milliseconds: 600),
         curve: Curves.easeInOut,
       );
-      isMenuOpen.value = false; // Close the menu after clicking
+      isMenuOpen.value = false;
     }
   }
 
   @override
   void onClose() {
-    _iconTimer.cancel(); // Stop the timer when the controller is disposed
+    _iconTimer.cancel();
     super.onClose();
   }
 }
@@ -48,76 +49,77 @@ class Navbar extends StatelessWidget {
   final Function(String) onItemSelected;
   final NavbarController controller = Get.find<NavbarController>();
 
-  Navbar({Key? key, required this.onItemSelected}) : super(key: key);
+  Navbar({super.key, required this.onItemSelected});
 
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
-    double deviceHeight = MediaQuery.of(context).size.height;
-
     return Drawer(
-      backgroundColor: Colors.black87, // Dark background
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            vertical: (20 / 800) * deviceHeight,
-            horizontal: (20 / 360) * deviceWidth),
+      backgroundColor: Colors.black87,
+      child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Obx(() {
-                      return Icon(
-                        controller.icons[controller.currentIcon.value],
-                        color: Color(0xFFC1F80B), // Light green color
-                        size: (24 / 360) * deviceWidth,
-                      );
-                    }),
-                    SizedBox(width: (10 / 360) * deviceWidth),
-                    Text(
-                      "FlexFit",
-                      style: TextStyle(
-                          color: Color(0xFFC1F80B),
-                          fontSize: (20 / 360) * deviceWidth,
-                          fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Obx(() => Image.asset(
+                            controller.iconAssets[controller.currentIcon.value],
+                            width: 30,
+                            height: 30,
+                            color: const Color(0xFFA7FF46),
+                          )),
+                      const SizedBox(width: 10),
+                      const Text(
+                        'FlexFit',
+                        style: TextStyle(
+                          color: Color(0xFFA7FF46),
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 24,
                     ),
-                  ],
-                ),
-                IconButton(
-                  icon: Icon(Icons.close,
-                      color: Colors.white, size: (24 / 360) * deviceWidth),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ],
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
             ),
-            Divider(color: Colors.white30),
-            SizedBox(height: (10 / 800) * deviceHeight),
-            menuItem("Services", deviceWidth, deviceHeight),
-            menuItem("Membership", deviceWidth, deviceHeight),
-            menuItem("Trainers", deviceWidth, deviceHeight),
-            menuItem("Contact Us", deviceWidth, deviceHeight),
+            const Divider(color: Colors.white24),
+            const SizedBox(height: 20),
+            _buildMenuItem('Services'),
+            _buildMenuItem('Membership'),
+            _buildMenuItem('Trainers'),
+            _buildMenuItem('Contact us'),
           ],
         ),
       ),
     );
   }
 
-  Widget menuItem(String text, double deviceWidth, double deviceHeight) {
-    return GestureDetector(
+  Widget _buildMenuItem(String text) {
+    return InkWell(
       onTap: () {
         onItemSelected(text);
-        Navigator.pop(Get.context!); // Close drawer
+        Get.back();
       },
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: (10 / 800) * deviceHeight),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Text(
           text,
-          style: TextStyle(
-            fontSize: (18 / 360) * deviceWidth,
+          style: const TextStyle(
             color: Colors.white,
+            fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
         ),

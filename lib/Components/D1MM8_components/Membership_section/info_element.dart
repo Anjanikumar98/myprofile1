@@ -1,54 +1,55 @@
 import 'package:flutter/material.dart';
 
 class InfoElement extends StatelessWidget {
-  const InfoElement({super.key, required this.boldInt, required this.bottomString, required this.topRightString});
-
+  const InfoElement(
+      {super.key,
+      required this.boldInt,
+      required this.bottomString,
+      required this.topRightString});
 
   final String bottomString;
-  final int boldInt;
+  final String boldInt;
   final String topRightString;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+
+    return SizedBox(
       //decoration: BoxDecoration(border: Border.all(color: Colors.white)),
       height: 61,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
           Padding(
-            padding: const EdgeInsets.all(4),
+            padding: EdgeInsets.all(4),
             child: SizedBox(
               height: 30,
               child: Row(
-
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(boldInt.toString(),
-                    style: const TextStyle(
+                  Text(
+                    boldInt.toString(),
+                    style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 25,
+                        fontSize: (25),
                         fontFamily: 'Barlow_Semi_Condensed',
-                        color:  Color(0xFFB8FE22),
-                        fontStyle: FontStyle.italic
-                    ),
+                        color: Color(0xFFB8FE22),
+                        fontStyle: FontStyle.italic),
                   ),
-                  const SizedBox(width: 4),
-
                   SizedBox(
-                    child: Text(topRightString,
-                      style: const TextStyle(
+                    width: 4,
+                  ),
+                  SizedBox(
+                    child: Text(
+                      topRightString,
+                      style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 10,
                           fontFamily: 'Poppins',
-                          color:  Color(0xFFB8FE22),
-                          fontStyle: FontStyle.italic
-                      ),
+                          color: Color(0xFFB8FE22),
+                          fontStyle: FontStyle.italic),
                     ),
                   ),
-
-
                 ],
               ),
             ),
@@ -63,8 +64,6 @@ class InfoElement extends StatelessWidget {
           // ),
           // ),
 
-
-
           // Divider(
           //   indent: 10,
           //   endIndent: 10,
@@ -72,23 +71,20 @@ class InfoElement extends StatelessWidget {
           //   height: 1,
           // ),
 
-
-
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 5),
-            child: Text(bottomString,
+            child: Text(
+              bottomString,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 10,
-                  fontFamily: 'Poppins',
-                  color:  Colors.white,
-                  //fontStyle: FontStyle.italic
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 10,
+                fontFamily: 'Poppins',
+                color: Colors.white,
+                //fontStyle: FontStyle.italic
               ),
-
             ),
           )
-
         ],
       ),
     );

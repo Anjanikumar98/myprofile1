@@ -3,13 +3,11 @@ import 'package:get/get.dart';
 class VideoController extends GetxController {
   // List of video thumbnail paths or URLs
   var videoThumbnails = <String>[
-    'assets/videos/video1.mp4',
-    'assets/videos/video2.mp4',
-    'assets/videos/video3.mp4',
+    'https://github.com/Anjanikumar98/myprofile1/blob/e427ed36b6bb2e1fdaff721c7decd3cd6cc83e82/assets/videos/gym_video.mp4',
   ].obs; // Observable list for reactivity
 
   // Currently selected video URL
-  var selectedVideoUrl = ''.obs;
+  var selectedVideoUrl = 'https://github.com/Anjanikumar98/myprofile1/blob/e427ed36b6bb2e1fdaff721c7decd3cd6cc83e82/assets/videos/gym_video.mp4'.obs;
 
   @override
   void onInit() {

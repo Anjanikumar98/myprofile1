@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 class VirtualTourController extends GetxController {
   RxString selectedVideoUrl = 'assets/videos/gym_video.mp4'.obs;

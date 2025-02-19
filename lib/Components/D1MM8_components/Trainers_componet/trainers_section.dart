@@ -3,7 +3,7 @@ import 'package:myprofile1/Components/D1MM8_components/Trainers_componet/tainer_
 import 'trainer_card.dart';
 
 class TrainersSection extends StatelessWidget {
-  const TrainersSection({Key? key}) : super(key: key);
+  const TrainersSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,36 +35,34 @@ class TrainersSection extends StatelessWidget {
     ];
 
     return Container(
-      width: (412 / 360) * deviceWidth, // ✅ Responsive width
-      height: (382.91 / 800) * deviceHeight, // ✅ Responsive height
-      padding: EdgeInsets.fromLTRB(
-        (20 / 360) * deviceWidth, // ✅ Responsive left padding
-        (25 / 800) * deviceHeight, // ✅ Responsive top padding
-        (20 / 360) * deviceWidth, // ✅ Responsive right padding
-        (25 / 800) * deviceHeight, // ✅ Responsive bottom padding
+      width: 412, // Fixed width
+      height: 382.91, // Fixed height
+      padding: const EdgeInsets.fromLTRB(
+        20, // Fixed left padding
+        25, // Fixed top padding
+        20, // Fixed right padding
+        25, // Fixed bottom padding
       ),
       decoration: BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.circular(
-            (11.44 / 360) * deviceWidth), // ✅ Responsive border radius
+        borderRadius: BorderRadius.circular(11.44), // Fixed border radius
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: (25 / 800) * deviceHeight), // ✅ Responsive spacing
+          SizedBox(height: 25), // ✅ Responsive spacing
 
           /// **Heading Section**
           SizedBox(
-            width: (372 / 360) * deviceWidth, // ✅ Responsive width
-            height: (52 / 800) * deviceHeight, // ✅ Responsive height
+            width: 372, // Fixed width
+            height: 52, // Fixed height
             child: Stack(
               alignment: Alignment.center,
               children: [
                 Text(
                   "Trainers",
                   style: TextStyle(
-                    fontSize:
-                        (48 / 360) * deviceWidth, // ✅ Responsive font size
+                    fontSize: 48, // Fixed font size
                     fontWeight: FontWeight.bold,
                     color: Colors.white.withOpacity(0.1),
                     letterSpacing: 2,
@@ -77,8 +75,7 @@ class TrainersSection extends StatelessWidget {
                       TextSpan(
                         text: "Meet your ",
                         style: TextStyle(
-                          fontSize: (24 / 360) *
-                              deviceWidth, // ✅ Responsive font size
+                          fontSize: 24, // Fixed font size
                           fontWeight: FontWeight.w700,
                           fontFamily: "Urbanist",
                           color: Colors.white,
@@ -88,11 +85,10 @@ class TrainersSection extends StatelessWidget {
                       TextSpan(
                         text: "Trainers",
                         style: TextStyle(
-                          fontSize: (24 / 360) *
-                              deviceWidth, // ✅ Responsive font size
+                          fontSize: 24, // Fixed font size
                           fontWeight: FontWeight.w700,
                           fontFamily: "Urbanist",
-                          color: Color(0xFF7ED957),
+                          color: Color(0xFFB8FE22),
                           decoration: TextDecoration.none,
                         ),
                       ),
@@ -104,16 +100,23 @@ class TrainersSection extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: (10 / 800) * deviceHeight), // ✅ Responsive spacing
+          SizedBox(height: 10), // ✅ Responsive spacing
 
           /// **Divider**
           Container(
-            width: (372 / 360) * deviceWidth, // ✅ Responsive width
-            height: (2.29 / 800) * deviceHeight, // ✅ Responsive height
-            color: Colors.white.withOpacity(0.3),
+            width: 366.28, // Fixed width
+            height: 0.43, // Border height (border width)
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Color(
+                    0xFF55A6C4), // Transparent blue color, adjust alpha as needed
+                width: 0.43, // Border width
+              ),
+            ),
+            alignment: Alignment.center, // Center alignment
           ),
 
-          SizedBox(height: (10 / 800) * deviceHeight), // ✅ Responsive spacing
+          SizedBox(height: 10), // ✅ Responsive spacing
 
           /// **Trainers Mobile Section**
           Expanded(

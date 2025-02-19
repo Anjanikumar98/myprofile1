@@ -8,6 +8,8 @@ class NavigationController extends GetxController {
 }
 
 class FlexFitMenu extends StatefulWidget {
+  const FlexFitMenu({super.key});
+
   @override
   _FlexFitMenuState createState() => _FlexFitMenuState();
 }
