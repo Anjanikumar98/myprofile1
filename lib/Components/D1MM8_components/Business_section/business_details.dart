@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'business_card.dart';
 
 class BusinessDetails extends StatelessWidget {
-  const BusinessDetails({super.key});
+  const   BusinessDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,8 @@ class BusinessDetails extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(height: (16 / 800) * deviceHeight),
-               BusinessCard(), // Ensure this widget doesn't add extra blur
+              BusinessCard(), // Ensure this widget doesn't add extra blur
+              SizedBox(height: (20 / 800) * deviceHeight),
             ],
           ),
         ),

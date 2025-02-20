@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:myprofile1/Components/D1MM8_components/Service_Section/service_cards.dart';
 
+
 class Services extends StatelessWidget {
   const Services({super.key});
 
@@ -9,6 +10,7 @@ class Services extends StatelessWidget {
   Widget build(BuildContext context) {
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
+
 
     return Container(
       width: 412, // Simplified to deviceWidth as it's 100% width
@@ -279,7 +281,7 @@ class Services extends StatelessWidget {
                   angle:
                       180 * 3.1415927 / 180, // Rotate the icon by 180 degrees
                   child: const Icon(
-                    Icons.more_horiz, // Using the 'More' icon
+                    Icons.arrow_back, // Using the 'More' icon
                     color: Colors.grey,
                     size: 12, // Fixed size for the icon
                   ),
@@ -309,7 +311,7 @@ class Services extends StatelessWidget {
               child: Align(
                 alignment: Alignment.center, // Ensures the icon is centered
                 child: const Icon(
-                  Icons.more_horiz, // Using the 'More' icon
+                  Icons.arrow_forward, // Using the 'More' icon
                   color: Colors.grey,
                   size: 12, // Fixed size
                 ),
@@ -321,3 +323,4 @@ class Services extends StatelessWidget {
     );
   }
 }
+

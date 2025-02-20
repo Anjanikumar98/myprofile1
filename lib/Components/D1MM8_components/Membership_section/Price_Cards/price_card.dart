@@ -8,7 +8,7 @@ class PriceCard extends StatelessWidget {
   final String duration;
   final String currency;
   final String planType;
-  final bool isRecommended; // Add this to conditionally change height
+  final bool isRecommended;
 
   const PriceCard({
     super.key,
@@ -17,7 +17,7 @@ class PriceCard extends StatelessWidget {
     required this.duration,
     this.currency = '₹',
     required this.planType,
-    required this.isRecommended, // Determines if the card is recommended
+    required this.isRecommended,
   });
 
   @override
@@ -25,11 +25,12 @@ class PriceCard extends StatelessWidget {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
 
-    final Color planColor = (planType == "Session-Based Plan")
-        ? const Color(0xFFB8FE22)
-        : const Color(0xFF55A6C4);
+    final bool isSessionBased = planType.toLowerCase().contains('session');
+    final Color planColor = isSessionBased
+        ? const Color(0xFFB8FE22) // Bright Green
+        : const Color(0xFF55A6C4); // Blue
 
-    final double height = isRecommended ? 98.09 : 95.09;
+    final double height = isRecommended ? 133.09 : 130.09;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(5.6), // Use the fixed border radius
@@ -41,24 +42,20 @@ class PriceCard extends StatelessWidget {
         child: Container(
           width: 188.79, // Fixed width
           height: height, // Dynamic height based on recommendation status
-          padding: const EdgeInsets.symmetric(
-            horizontal: 11.21, // Horizontal padding
-            vertical: 5.6, // Vertical padding
-          ),
           decoration: BoxDecoration(
-            color: const Color(0x55A6C44D), // Transparent Blue
+            color: const Color(0x5540DEEF), // Transparent Blue
             borderRadius: BorderRadius.circular(5.6), // Fixed border radius
             border: Border.all(
                 color: planColor, width: 1), // Border color based on plan
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(11.21, 5.6, 11.21, 1.4),
                 child: _buildMembershipName(),
               ),
+              SizedBox(height: 1.4,),
               Padding(
                 padding: const EdgeInsets.fromLTRB(11.21, 1.4, 11.21, 1.4),
                 child: _buildPriceSection(planColor),
@@ -66,7 +63,6 @@ class PriceCard extends StatelessWidget {
               const SizedBox(height: 1.4),
               _buildDivider(),
               const SizedBox(height: 2.8),
-              const Spacer(),
               _buildPlanTypeAndRating(planType),
             ],
           ),
@@ -77,38 +73,38 @@ class PriceCard extends StatelessWidget {
 
   Widget _buildMembershipName() {
     return SizedBox(
-      width: 166.38,
-      height: 24,
-      child: Text(
-        name, // Assuming 'name' is a variable holding the membership name
-        style: TextStyle(
-          fontFamily: "Barlow Semi Condensed",
-          fontSize: isRecommended
-              ? 22.41
-              : 20, // Adjust font size based on recommendation
-          fontWeight: FontWeight.w700,
-          fontStyle: FontStyle.italic,
-          height: isRecommended
-              ? 26.89 / 22.41
-              : 24 / 20, // Adjust line height based on recommendation
-          letterSpacing: 0, // No letter spacing as per Figma
-          color: Colors.white, // Pure white color as defined (#FFFFFF)
+      width: 171.0, // Small increment to fit text
+      height: isRecommended ? 27 : 24, // Dynamically adjust height
+      child: FittedBox(
+        alignment: Alignment.centerLeft,
+        fit: BoxFit.scaleDown, // Ensures text fits in a single line
+        child: Text(
+          name,
+          style: TextStyle(
+            fontFamily: "Barlow Semi Condensed",
+            fontSize: isRecommended ? 22 : 20,
+            fontWeight: FontWeight.w700,
+            fontStyle: FontStyle.italic,
+            height: 1.1, // More stable height
+            letterSpacing: -0.2, // Reduce spacing slightly
+            color: Colors.white,
+          ),
+          textAlign: TextAlign.start,
+          maxLines: 1,
+          overflow: TextOverflow.visible, // Prevents truncation
+          softWrap: false, // Ensures no wrapping
         ),
-        textAlign: TextAlign.start,
-        maxLines: 1, // Limit to one line
-        overflow: TextOverflow.ellipsis, // Add ellipsis if text overflows
       ),
     );
   }
 
   Widget _buildPriceSection(Color planColor) {
     return SizedBox(
-      width: 166.38, // Fixed width
-      height: 30, // Fixed height
+      width: 166.38, // Matches Figma width
+      height: 30, // Matches Figma height
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.baseline,
-        textBaseline: TextBaseline.alphabetic,
+        crossAxisAlignment:
+            CrossAxisAlignment.center, // Ensures alignment consistency
         children: [
           // Currency symbol (₹)
           Text(
@@ -117,11 +113,10 @@ class PriceCard extends StatelessWidget {
               fontFamily: "Pontano Sans",
               fontSize: 14, // Fixed font size
               fontWeight: FontWeight.w500,
-              height: 1.28, // Adjusted line height ratio directly
               color: planColor, // Use the plan color for currency text
             ),
           ),
-          SizedBox(width: 2.24), // Fixed gap
+          SizedBox(width: 2), // Exact gap from Figma
 
           // Price (e.g., "4000")
           Text(
@@ -134,16 +129,15 @@ class PriceCard extends StatelessWidget {
               color: planColor, // Plan color for price text
             ),
           ),
-          SizedBox(width: 5), // Fixed gap
+          SizedBox(width: 4), // Fixed gap from Figma
 
           // "Per Month" text
           Text(
             "Per Month", // The text showing duration
             style: TextStyle(
               fontFamily: "Poppins",
-              fontSize: 10, // Fixed font size
+              fontSize: 8, // Fixed font size
               fontWeight: FontWeight.w400,
-              height: 1.25, // Adjusted line height ratio
               color: const Color(
                   0xFFF4F4F4), // Light grayish color for "Per Month"
             ),
@@ -154,19 +148,27 @@ class PriceCard extends StatelessWidget {
   }
 
   Widget _buildDivider() {
-    return Center(
-      child: Container(
-        width: 166.38, // Fixed width from previous calculation
-        height: 4.48, // Fixed height from previous calculation
-        padding: EdgeInsets.symmetric(
-          vertical: 2.24,
-          horizontal: 5.6,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.transparent,
-          border: Border.all(
-            color: const Color(0x8055A6C4), // Equivalent to #55A6C480
-            width: 0.84,
+    return Padding(
+      padding:
+          const EdgeInsets.symmetric(vertical: 2.24), // Matches Figma padding
+      child: Center(
+        child: Container(
+          width: 166.38, // Parent container width
+          height: 4.48, // Divider height
+          padding:
+              const EdgeInsets.symmetric(horizontal: 5.6), // Left-Right padding
+          child: Container(
+            width: 155.18, // Actual divider line width
+            height: 0.84, // Border width from Figma
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: const Color(
+                      0x8055A6C4), // Transparent overlay primary blue
+                  width: 0.84, // Border width
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -189,7 +191,6 @@ class PriceCard extends StatelessWidget {
           // Rating Section
           SizedBox(
             width: 31.24, // Fixed width
-            height: 17, // Fixed height
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,28 +210,7 @@ class PriceCard extends StatelessWidget {
                 ),
                 SizedBox(width: 2.8), // Fixed gap between rating and star
 
-                // Star Unit Component (Half-Star)
-                Container(
-                  width: 10.435,
-                  height: 10.085,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFF55A6C4), // Border color (Primar-Blue)
-                      width: 0.28, // Border width
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF55A6C4), Colors.white],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      stops: [0.4242, 0.4923],
-                    ),
-                  ),
-                  child: Center(
-                    child:
-                        _buildVectorIcon(), // Call the method to display the SVG
-                  ),
-                )
+                _buildVectorIcon(), // Call the method to display the SVG
               ],
             ),
           ),
@@ -241,14 +221,18 @@ class PriceCard extends StatelessWidget {
           // Divider
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.24, horizontal: 1.12),
-            child: Container(
-              width: 2.24, // Fixed width for divider
-              height: 17, // Fixed height
-              decoration: BoxDecoration(
-                border: Border(
-                  left: BorderSide(
-                    color: const Color(0x8055A6C4), // Transparent blue overlay
-                    width: 0.84, // Fixed border width
+            child: // Adjusted Divider
+                Center(
+              child: Container(
+                width: 2.24, // Fixed width for divider
+                height: 17 - 2.7, // Lower by 2.7 pixels
+                decoration: BoxDecoration(
+                  border: Border(
+                    left: BorderSide(
+                      color:
+                          const Color(0x8055A6C4), // Transparent blue overlay
+                      width: 0.84, // Fixed border width
+                    ),
                   ),
                 ),
               ),
@@ -260,8 +244,6 @@ class PriceCard extends StatelessWidget {
 
           // Plan Type Text
           Container(
-            width: 80, // Fixed width for plan type
-            height: 12, // Fixed height
             alignment: Alignment.center,
             child: Text(
               planType, // Plan type text (e.g., "Session Based Plan")
@@ -269,7 +251,6 @@ class PriceCard extends StatelessWidget {
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
                 fontSize: 7.84, // Fixed font size
-                height: 1.5, // Adjusted line height ratio
                 color: planType == "Session Based Plan"
                     ? const Color(0xFFB8FE22) // Green text
                     : const Color(0xFF55A6C4), // Blue text
@@ -289,7 +270,6 @@ class PriceCard extends StatelessWidget {
       height: 10.085, // Set height for the icon
       fit: BoxFit
           .contain, // Ensures the icon fits within the provided dimensions
-      color: Colors.white, // Apply color if necessary
     );
   }
 }

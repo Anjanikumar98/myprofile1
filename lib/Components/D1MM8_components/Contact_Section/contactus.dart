@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:myprofile1/Components/global_components/buttons/primary_button.dart';
 import 'package:myprofile1/Components/global_components/character_input_fields/description_input.dart';
 import 'package:myprofile1/Components/global_components/character_input_fields/label.dart';
-import '../../../Controllers/D1MM8_Controllers/contact_us_controller.dart';
+import '../../../Controllers/D1MM8_Controllers/Contact_us_controller/contact_us_controller.dart';
 import '../../global_components/character_input_fields/text_input_field.dart';
 
 class ContactUsSection extends StatelessWidget {
@@ -50,8 +50,7 @@ class ContactUsSection extends StatelessWidget {
                         "Contact Us",
                         style: TextStyle(
                           fontFamily: 'Inter',
-                          fontSize: (40 / 360) *
-                              deviceWidth, // ✅ Responsive font size
+                          fontSize: 40, // ✅ Responsive font size
                           fontWeight: FontWeight.w700,
                           height: 1.21, // ✅ Keeps proper line spacing
                           color:
@@ -67,8 +66,7 @@ class ContactUsSection extends StatelessWidget {
                         text: "Let’s Get ",
                         style: TextStyle(
                           fontFamily: 'Urbanist',
-                          fontSize: (24 / 360) *
-                              deviceWidth, // ✅ Responsive font size
+                          fontSize: 24, // ✅ Responsive font size
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
                         ),
@@ -85,8 +83,7 @@ class ContactUsSection extends StatelessWidget {
                               child: Text(
                                 "in Touch",
                                 style: TextStyle(
-                                  fontSize: (24 / 360) *
-                                      deviceWidth, // ✅ Responsive font size
+                                  fontSize: 24, // ✅ Responsive font size
                                   fontWeight: FontWeight.w700,
                                   color: Color(
                                       0xFFB8FE22), // ✅ Black for contrast against the green background
@@ -247,8 +244,8 @@ class ContactUsSection extends StatelessWidget {
                                   ),
                                   SizedBox(height: 15 / 800 * deviceHeight),
                                   Label(
-                                    fieldLabel: 'Description',
-                                    optionalTextAvailable: 'optional',
+                                    fieldLabel: 'Description ',
+                                    optionalTextAvailable: '(optional)',
                                   ),
                                   SizedBox(height: 15 / 800 * deviceHeight),
                                   DescriptionInputField(
@@ -265,6 +262,7 @@ class ContactUsSection extends StatelessWidget {
                                     buttonHeight: (45 / 800) *
                                         deviceHeight, // ✅ Responsive height
                                     buttonText: 'Submit',
+                                    textColor: Color(0xFF121212),
                                     onTap: () {
                                       // final overlay = ShowOverlay();
                                       // overlayKey.currentState?.showOverlay(context);

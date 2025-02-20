@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myprofile1/Components/D1MM8_components/Membership_section/Additional_Info_conatiner/additional_info_2.dart';
 import 'package:myprofile1/Components/global_components/buttons/primary_button.dart';
 import 'package:myprofile1/Components/global_components/common_containers/additional_info.dart';
 import '../../../../models/global_models/info_element_model.dart';
@@ -13,7 +14,7 @@ class MembershipCard extends StatelessWidget {
   final bool isRecommended;
   final PlanType planType;
 
-  const MembershipCard({
+  MembershipCard({
     super.key,
     required this.name,
     required this.price,
@@ -22,7 +23,7 @@ class MembershipCard extends StatelessWidget {
     required this.planType,
   });
 
-  static const List<String> defaultFeatures = [
+  final List<String> defaultFeatures = [
     "Features added in membership Plan during plan Creation.",
     "Features added in membership Plan during plan Creation.",
     "Features added in membership Plan during plan Creation.",
@@ -30,7 +31,7 @@ class MembershipCard extends StatelessWidget {
     "Features added in membership Plan during plan Creation.",
   ];
 
-  List<InfoModel> getAdditionalInfoByPlanType() {
+  static List<InfoModel> getAdditionalInfoByPlanType(PlanType planType) {
     return planType == PlanType.sessionBased
         ? sessionBasedInfo
         : periodBasedInfo;
@@ -59,8 +60,8 @@ class MembershipCard extends StatelessWidget {
     return Container(
       width: 200, // Fixed width for non-recommended cards
       height: isRecommended
-          ? 428.99 // Height for recommended cards
-          : 405.26, // Height for non-recommended cards
+          ? 463.99 // Height for recommended cards
+          : 440.26, // Height for non-recommended cards
 
       margin: EdgeInsets.all(MembershipCardTheme.cardMargin), // Fixed margin
       padding: EdgeInsets.all(MembershipCardTheme.cardPadding), // Fixed padding
@@ -76,8 +77,8 @@ class MembershipCard extends StatelessWidget {
       child: Container(
         width: 188.79, // Inner container width
         height: isRecommended
-            ? 397.05 // Adjust height for recommended cards (subtract padding and border)
-            : 394.05, // Adjust height for non-recommended cards (subtract padding and border)
+            ? 431.05 // Adjust height for recommended cards (subtract padding and border)
+            : 329.05, // Adjust height for non-recommended cards (subtract padding and border)
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(11.21), // Fixed border radius
         ),
@@ -97,9 +98,9 @@ class MembershipCard extends StatelessWidget {
               ),
               SizedBox(height: 5.6),
               AdditionalInfo(
+                listOfAdditionalInfo: getAdditionalInfoByPlanType(planType),
                 width: 188.79,
                 height: 42.93,
-                listOfAdditionalInfo: getAdditionalInfoByPlanType(),
               ),
               SizedBox(height: 5.6),
               SizedBox(
@@ -126,10 +127,12 @@ class MembershipCard extends StatelessWidget {
                   horizontal: 11.21, // Fixed horizontal padding
                   vertical: 4.48, // Fixed vertical padding
                 ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Color(0x8055A6C4), // Border color (transparent blue)
-                    width: 0.56, // Fixed border width
+                child: Center(
+                  child: Divider(
+                    thickness: 0.56,
+                    color: Color(0x8055A6C4),
+                    indent: (188.8 - 166.38) / 2,
+                    endIndent: (188.8 - 166.38) / 2,
                   ),
                 ),
               ),

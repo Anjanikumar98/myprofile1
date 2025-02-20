@@ -48,7 +48,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
         padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
           color: widget.isEnabled
-              ? (widget.backgroundColor ?? Colors.blue)
+              ? (widget.backgroundColor ?? Color(0xFFB8FE22))
               : (widget.backgroundColor ?? Colors.blue).withOpacity(0.5),
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
           border: Border.all(

@@ -126,19 +126,19 @@ class BusinessCard extends StatelessWidget {
                     // Get Started Button (Primary Button)
 
                     PrimaryButton(
-                        buttonWidth: (148 / 360) * deviceWidth,
-                        buttonHeight: (42 / 800) * deviceHeight,
-                        buttonText: 'Get Started',
-                        backgroundColor: const Color(0xFFB8FE22),
-                        onTap: () {},
-                        isEnabled: true,
-                        textColor: const Color(0xFF063434),
-                        borderColor: const Color(0xFF063434),
-                        icon: Icon(
-                          Icons.arrow_forward,
-                          size: 18,
-                          color: Color(0xFF063434),
-                        )
+                      buttonWidth: (148 / 360) * deviceWidth,
+                      buttonHeight: (42 / 800) * deviceHeight,
+                      buttonText: 'Get Started',
+                      backgroundColor: const Color(0xFFB8FE22),
+                      onTap: () {},
+                      isEnabled: true,
+                      textColor: const Color(0xFF063434),
+                      borderColor: const Color(0xFF063434),
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        size: 10,
+                        color: Color(0xFF063434),
+                      ),
                     ),
                   ],
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:video_player/video_player.dart';
 import '../Components/D1MM8_components/Membership_section/Memembership_View/membership_view.dart';
 import '../Components/D1MM8_components/Trainers_componet/trainers_section.dart';
 import '../Components/D1MM8_components/Virtual_Tour_Section/virtual_tour_section.dart';
@@ -27,10 +27,20 @@ class _FinalScreenState extends State<FinalScreen> {
   final GlobalKey trainersKey = GlobalKey();
   final GlobalKey contactKey = GlobalKey();
 
+  late VideoPlayerController _controller;
+  final ScrollController _scrollControllerv = ScrollController();
+  bool _videoStarted = false;
+
   @override
   void initState() {
     super.initState();
     _navbarController = Get.put(NavbarController(_scrollController));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   void _scrollToSection(GlobalKey key) {
@@ -45,11 +55,6 @@ class _FinalScreenState extends State<FinalScreen> {
   }
 
   // Consider adding this to handle controller disposal
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +70,29 @@ class _FinalScreenState extends State<FinalScreen> {
             children: [
               BusinessDetails(),
               Container(key: servicesKey, child: Services()),
+              SizedBox(
+                height: 20,
+              ),
               VirtualTourSection(),
+              SizedBox(
+                height: 20,
+              ),
               Container(key: membershipKey, child: MembershipPlansView()),
+              SizedBox(
+                height: 20,
+              ),
               Container(key: trainersKey, child: TrainersSection()),
+              SizedBox(
+                height: 20,
+              ),
               ReviewsContainer(),
+              SizedBox(
+                height: 20,
+              ),
               Container(key: contactKey, child: ContactUsSection()),
+              SizedBox(
+                height: 20,
+              ),
               FlexFitFooter(),
             ],
           ),

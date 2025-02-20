@@ -49,8 +49,6 @@ class MembershipCardsView extends StatelessWidget {
     ];
 
     return SizedBox(
-      width: (372 / 360) * deviceWidth, // Scales based on screen width
-      height: (448.99 / 800) * deviceHeight, // Scales based on screen height
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal, // Ensures horizontal scrolling
         physics: const BouncingScrollPhysics(),

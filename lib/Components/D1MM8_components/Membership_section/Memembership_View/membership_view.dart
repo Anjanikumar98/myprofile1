@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:myprofile1/Components/D1MM8_components/Membership_section/membership_cards_view.dart';
 import 'package:myprofile1/Components/D1MM8_components/widgets/custom_title.dart';
 import 'package:myprofile1/Components/D1MM8_components/Membership_section/periodic_selcetor.dart';
-import '../../../../Controllers/D1MM8_Controllers/mebership_controller.dart';
-import '../../../../Controllers/D1MM8_Controllers/periodic_selector_controller.dart';
+import '../../../../Controllers/D1MM8_Controllers/Membership_section/mebership_controller.dart';
+import '../../../../Controllers/D1MM8_Controllers/Membership_section/periodic_selector_controller.dart';
 
 class MembershipPlansView extends StatelessWidget {
   final MembershipController controller = Get.put(MembershipController());
@@ -19,92 +19,89 @@ class MembershipPlansView extends StatelessWidget {
     double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
 
-    return Container(
-      width: (412 / 360) * deviceWidth, // Fixed width
-      height: (623.78/800) * deviceHeight, // Fixed height
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(11.44), // Fixed border radius
-        color: Colors.white
-            .withOpacity(0.1), // Transparent white background with 10% opacity
-        image: const DecorationImage(
-          image: AssetImage('assets/images/background_image_memebership.png'),
-          opacity: 0.1, // Low opacity for the background image
-          fit: BoxFit.cover, // Ensure the image covers the container
-        ),
-      ),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-            sigmaX: 14.3056, sigmaY: 14.3056), // Fixed blur effect
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(
-            20, // Fixed padding for left and right
-            25, // Fixed padding for top
-            20, // Fixed padding for right
-            25, // Fixed padding for bottom
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(11.44),
+      child: Container(
+        width: 412,
+        height: 623.78,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(11.44),
+          color: Colors.white.withOpacity(0.1),
+          image: const DecorationImage(
+            image: AssetImage('assets/images/background_image_memebership.png'),
+            opacity: 0.1,
+            fit: BoxFit.cover,
           ),
-          child: Column(
-            children: [
-              SizedBox(height: 25,),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3), // Apply a slight blur
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+            child: Column(
+              children: [
+                const SizedBox(height: 15),
 
-              SizedBox(
-                width: 372, // Matches Figma width
-                height: 52, // Matches Figma height
-                child: Column(
-                  children: [
-                    // CustomTitle with "Browse Memberships" text
-                    CustomTitle(
-                      backgroundText: 'Plans',
-                      frontTextSegments: [
-                        TextSegment(
-                          text: 'Browse ',
-                          color: Colors.white,
-                        ),
-                        TextSegment(
-                          text: 'Memberships',
-                          color: Color(0xFFB8FE22), // Matches Figma color #B8FE22
-                        ),
-                      ],
+                // Title Section
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 372,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: CustomTitle(
+                        backgroundText: 'Plans',
+                        frontTextSegments: const [
+                          TextSegment(
+                            text: 'Browse ',
+                            color: Colors.white,
+                          ),
+                          TextSegment(
+                            text: 'Memberships',
+                            color: Color(0xFFB8FE22),
+                          ),
+                        ],
+                      ),
                     ),
-                    // Fixed gap for spacing
-                    SizedBox(height: (2.86 / 800) * deviceHeight), // Adjusted gap for responsiveness
-                  ],
+                  ),
                 ),
-              ),
 
-              SizedBox(height: 10),
+                const SizedBox(height: 8),
 
-              PeriodSelector(),
+                // Period Selector
+                SizedBox(width: 372, child: PeriodSelector()),
 
-              SizedBox(height: 10),
+                const SizedBox(height: 8),
 
-              Container(
-                width: 372, // Matches Figma width
-                height: 2.29, // Matches Figma height
-                padding: EdgeInsets.symmetric(
-                  vertical: 1.14, // Fixed vertical padding based on Figma
-                  horizontal: 2.86, // Fixed horizontal padding based on Figma
-                ),
-                child: Center( // Center alignment
-                  child: Container(
-                    width: 366.28, // Adjusted width as per Figma (matches 366.28)
-                    height: 0, // No height for the line itself, only a border will show
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          width: 0.43, // Fixed border width based on Figma
-                          color: const Color(0x55A6C480), // Matches Figma color
+                // Divider Line
+                Container(
+                  width: 372, // Matches Figma width
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 1.14, horizontal: 2.86), // Figma padding
+                  child: Center(
+                    child: Container(
+                      width: 366.28, // Matches Figma line width
+                      decoration: BoxDecoration(
+                        border: Border(
+                          top: BorderSide(
+                            width: 0.43, // Matches Figma border width
+                            color:
+                                const Color(0x55A6C480), // Matches Figma color
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
 
+                const SizedBox(height: 8),
 
-              SizedBox(height: 10),
-              // Plans List
-              MembershipCardsView(),
-            ],
+                // Membership Cards View
+                SizedBox(
+                    width: 372, // Scales based on screen width
+                    height: 460, // Scales based on screen height
+                    child: MembershipCardsView()),
+              ],
+            ),
           ),
         ),
       ),

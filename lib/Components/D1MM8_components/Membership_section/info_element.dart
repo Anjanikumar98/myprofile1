@@ -13,7 +13,6 @@ class InfoElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
       //decoration: BoxDecoration(border: Border.all(color: Colors.white)),
       height: 61,
@@ -49,7 +48,7 @@ class InfoElement extends StatelessWidget {
                           color: Color(0xFFB8FE22),
                           fontStyle: FontStyle.italic),
                     ),
-                  ),
+                  ),  
                 ],
               ),
             ),
@@ -90,3 +89,63 @@ class InfoElement extends StatelessWidget {
     );
   }
 }
+
+// return SizedBox(
+//   width: 38.72, // Fixed width
+//   height: 33.96, // Fixed height
+//   child: Column(
+//     crossAxisAlignment: CrossAxisAlignment.center,
+//     children: [
+//       Padding(
+//         padding: EdgeInsets.all(2.24), // Padding applied
+//         child: SizedBox(
+//           height: 17, // Upper element height
+//           width: 14, // Upper element width
+//           child: Row(
+//             crossAxisAlignment: CrossAxisAlignment.end,
+//             children: [
+//               Text(
+//                 boldInt.toString(),
+//                 style: TextStyle(
+//                   fontWeight: FontWeight.w700,
+//                   fontSize: 14, // Adjusted to fit 14px width
+//                   fontFamily: 'Barlow_Semi_Condensed',
+//                   color: Color(0xFFB8FE22),
+//                   fontStyle: FontStyle.italic,
+//                 ),
+//               ),
+//               SizedBox(width: 2.24), // Gap
+//               Text(
+//                 topRightString,
+//                 style: TextStyle(
+//                   fontWeight: FontWeight.w500,
+//                   fontSize: 8, // Adjusted to fit 18px width
+//                   fontFamily: 'Poppins',
+//                   color: Color(0xFFB8FE22),
+//                   fontStyle: FontStyle.italic,
+//                 ),
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//       Padding(
+//         padding: const EdgeInsets.symmetric(vertical: 2.24), // Adjusted padding
+//         child: SizedBox(
+//           width: 25, // Fixed width for bottom text
+//           height: 8, // Fixed height for bottom text
+//           child: Text(
+//             bottomString,
+//             textAlign: TextAlign.center,
+//             style: TextStyle(
+//               fontWeight: FontWeight.w500,
+//               fontSize: 8, // Adjusted to fit 8px height
+//               fontFamily: 'Poppins',
+//               color: Colors.white,
+//             ),
+//           ),
+//         ),
+//       )
+//     ],
+//   ),
+// );

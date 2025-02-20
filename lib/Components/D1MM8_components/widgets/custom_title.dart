@@ -47,31 +47,43 @@ class CustomTitle extends StatelessWidget {
             // Background Text (Plans)
             Positioned(
               top: 2.86, // Adjusted gap for the background text
-              child: Text(
-                backgroundText, // "Plans"
-                style: TextStyle(
-                  fontFamily: "Inter", // Updated font family
-                  fontWeight: FontWeight.w700, // Font weight 700
-                  fontSize: 40, // Font size 40px
-                  height: 48.41 / 40, // Adjusted line height ratio
-                  letterSpacing: 0, // No letter spacing
-                  color: Color(0xFFFFFFFF), // Updated text color with opacity
+              child: SizedBox(
+                width: 286.11, // Ensures text fits within this width
+                child: FittedBox(
+                  fit: BoxFit.scaleDown, // Ensures the text scales down if too long
+                  child: Text(
+                    backgroundText, // "Plans"
+                    style: TextStyle(
+                      fontFamily: "Inter", // Updated font family
+                      fontWeight: FontWeight.w300, // Font weight 300
+                      fontSize: 40, // Font size 40px
+                      height: 48.41 / 40, // Adjusted line height ratio
+                      letterSpacing: 0, // No letter spacing
+                      color: const Color(0xFFFFFFFF).withOpacity(0.3), // Transparent text color
+                    ),
+                    textAlign: textAlign,
+                  ),
                 ),
-                textAlign: textAlign,
               ),
             ),
             // Foreground Text
             Positioned(
               top: 2.29, // Adjusted gap for the foreground text
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: frontTextSegments.map((segment) {
-                  return Text(
-                    segment.text,
-                    style: commonStyle.copyWith(color: segment.color),
-                    textAlign: textAlign,
-                  );
-                }).toList(),
+              child: SizedBox(
+                width: 286.11, // Ensures text fits within this width
+                child: FittedBox(
+                  fit: BoxFit.scaleDown, // Scales down if text is too long
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: frontTextSegments.map((segment) {
+                      return Text(
+                        segment.text,
+                        style: commonStyle.copyWith(color: segment.color),
+                        textAlign: textAlign,
+                      );
+                    }).toList(),
+                  ),
+                ),
               ),
             ),
           ],

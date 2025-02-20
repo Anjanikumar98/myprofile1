@@ -3,10 +3,12 @@ import 'dart:ui';
 import '../../../models/global_models/info_element_model.dart';
 import '../../D1MM8_components/Membership_section/info_element.dart';
 
-
 class AdditionalInfo extends StatelessWidget {
   const AdditionalInfo(
-      {super.key, required this.width, required this.listOfAdditionalInfo, this.height = 77});
+      {super.key,
+      required this.width,
+      required this.listOfAdditionalInfo,
+      required this.height });
 
   final double width;
   final double height;
@@ -23,8 +25,8 @@ class AdditionalInfo extends StatelessWidget {
         child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
             child: Container(
-              width: (width / 360) * deviceWidth,
-              height: 77,
+              width: width,
+              height: height, // 77
               color: const Color(0xFF55A6C4).withOpacity(0.3),
               child: Stack(children: [
                 Column(
@@ -39,9 +41,16 @@ class AdditionalInfo extends StatelessWidget {
                             topRightString:
                                 listOfAdditionalInfo[0].topRightString),
                         Container(
-                          height: 50,
-                          width: 1,
-                          color: Colors.black,
+                          width: 0.56, // Border width as per design
+                          height: 50,  // Fixed height
+                          decoration: BoxDecoration(
+                            border: Border(
+                              left: BorderSide(
+                                color: Color(0xFF063434), // Dark Gray color as per design
+                                width: 0.56, // Border width
+                              ),
+                            ),
+                          ),
                         ),
                         InfoElement(
                             boldInt: listOfAdditionalInfo[1].boldInt,
@@ -49,9 +58,16 @@ class AdditionalInfo extends StatelessWidget {
                             topRightString:
                                 listOfAdditionalInfo[1].topRightString),
                         Container(
-                          height: 50,
-                          width: 1,
-                          color: Colors.black,
+                          width: 0.56, // Border width as per design
+                          height: 50,  // Fixed height
+                          decoration: BoxDecoration(
+                            border: Border(
+                              left: BorderSide(
+                                color: Color(0xFF063434), // Dark Gray color as per design
+                                width: 0.56, // Border width
+                              ),
+                            ),
+                          ),
                         ),
                         InfoElement(
                             boldInt: listOfAdditionalInfo[2].boldInt,
